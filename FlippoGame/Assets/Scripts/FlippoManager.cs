@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FlippoManager : MonoBehaviour {
 
-    public List<Flippo> flippos;
+    public List<Collection> collections;
 
 	// Use this for initialization
 	void Start () {
