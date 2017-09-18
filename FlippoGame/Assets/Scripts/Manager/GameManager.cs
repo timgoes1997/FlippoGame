@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        Screen.orientation = ScreenOrientation.LandscapeLeft;
+        Screen.orientation = ScreenOrientation.Portrait;
 	}
 	
 	// Update is called once per frame
