@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CollectionGridHandler : MonoBehaviour {
 
+    public Collection filter = Collection.None;
+
     [SerializeField]
     private GameObject gridButtonTemplate;
 
@@ -19,8 +21,7 @@ public class CollectionGridHandler : MonoBehaviour {
 
     private void GenerateGridButtons()
     {
-        Collection c = GameManager.Instance.collections[0];
-        foreach (Flippo f in c.flippos)
+        foreach (Flippo f in GameManager.Instance.GetFlippoByPlayerFlippo(PlayerManager.Instance.Inventory.flippos, filter))
         {
             GameObject gridButton = Instantiate(gridButtonTemplate) as GameObject;
             gridButton.SetActive(true);
