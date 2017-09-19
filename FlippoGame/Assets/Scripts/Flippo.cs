@@ -7,7 +7,7 @@ using UnityEngine.UI;
 [System.Serializable]
 public class Flippo {
     public int id;
-    public int amount;
-    public bool unlocked;
     public Sprite sprite;
+    public Collection collection;
+    public Rarity rarity;
 }

@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public enum Collection {
-    None,
-    Originals,
-    HitsZone
+public class PlayerFlippo {
+    public int flippoID;
+    public int amount;
 }

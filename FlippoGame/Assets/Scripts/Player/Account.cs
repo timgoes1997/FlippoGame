@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public enum Collection {
-    None,
-    Originals,
-    HitsZone
+public class Account {
+    public int Id;
 }

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public enum Collection {
-    None,
-    Originals,
-    HitsZone
+public enum Rarity {
+    Common,
+    UnCommon,
+    Rare,
+    Legendary
 }
