@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class PlayerManager : MonoBehaviour
 
     //fields
     private static PlayerManager instance = null;
+    [SerializeField]
     private Account acc;
     [SerializeField]
     private Inventory inventory;
@@ -41,7 +43,7 @@ public class PlayerManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        StartCoroutine(GetAccountID());
     }
 
     // Update is called once per frame
@@ -67,5 +69,23 @@ public class PlayerManager : MonoBehaviour
         ss.Clear();
         ss.Add(inventory);
         ss.Save(Files.FlippoData);
+    }
+
+    IEnumerator GetAccountID()
+    {
+
+        WWWForm form = new WWWForm();
+        UnityWebRequest www = UnityWebRequest.Post("http://192.168.1.215:8080/account/create", form);
+
+        yield return www.Send();
+
+        if (www.isNetworkError)
+        {
+            Debug.Log(www.error);
+        }
+        else
+        {
+            Debug.Log(www.downloadHandler.text);
+        }
     }
 }
