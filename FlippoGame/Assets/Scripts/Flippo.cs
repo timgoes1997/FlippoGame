@@ -7,8 +7,7 @@ using UnityEngine.UI;
 [System.Serializable]
 public class Flippo {
     public int id;
-    public int amount;
-    public bool unlocked;
-    public Image flippoImage;
-    public UnityEvent questionEvent; //For loading a certain scene or something else.
+    public Sprite sprite;
+    public Collection collection;
+    public Rarity rarity;
 }
