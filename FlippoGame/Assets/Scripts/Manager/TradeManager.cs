@@ -5,15 +5,12 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class TradeManager : MonoBehaviour
-{
-    [SerializeField]
-    private string jsonURL = "http://192.168.1.215:8080";
-
+{ 
     // Use this for initialization
     void Start()
     {
         //StartCoroutine(GetTrades(1));
-        StartCoroutine(CreateAccount());
+        //StartCoroutine(CreateAccount());
     }
 
     IEnumerator GetTrades(int accountID)
@@ -37,7 +34,7 @@ public class TradeManager : MonoBehaviour
     {
         Debug.Log("Create account");
         WWWForm form = new WWWForm();
-        UnityWebRequest www = UnityWebRequest.Post(jsonURL + "/account/create", form);
+        UnityWebRequest www = UnityWebRequest.Post(Files.JsonURL + "/account/create", form);
 
         yield return www.Send();
 
@@ -65,7 +62,7 @@ public class TradeManager : MonoBehaviour
         form.AddField("otheraccId", receiver);
         form.AddField("otherflippoId", 3);
 
-        UnityWebRequest www = UnityWebRequest.Post(jsonURL + "/trade/create", form);
+        UnityWebRequest www = UnityWebRequest.Post(Files.JsonURL + "/trade/create", form);
 
         yield return www.Send();
 
@@ -83,7 +80,7 @@ public class TradeManager : MonoBehaviour
     IEnumerator GetProposedTrades(int proposer, int receiver)
     {
         Debug.Log("Proposed trade");
-        UnityWebRequest www = UnityWebRequest.Get(jsonURL + "/trade/out?id=" + proposer);
+        UnityWebRequest www = UnityWebRequest.Get(Files.JsonURL + "/trade/out?id=" + proposer);
 
         yield return www.Send();
 
@@ -101,7 +98,7 @@ public class TradeManager : MonoBehaviour
     IEnumerator GetTradeRequests(int proposer, int receiver)
     {
         Debug.Log("Trade requests");
-        UnityWebRequest www = UnityWebRequest.Get(jsonURL + "/trade/in?id=" + receiver);
+        UnityWebRequest www = UnityWebRequest.Get(Files.JsonURL + "/trade/in?id=" + receiver);
 
         yield return www.Send();
 
@@ -114,9 +111,12 @@ public class TradeManager : MonoBehaviour
             string json = www.downloadHandler.text;
             Debug.Log(json);
             var jo = JArray.Parse(json);
-            int id = jo[0]["id"].Value<int>();
-            Debug.Log("Trade: " + id);
-            StartCoroutine(AcceptTrade(id, proposer, receiver));
+            if (jo.Count > 0)
+            {
+                int id = jo[0]["id"].Value<int>();
+                Debug.Log("Trade: " + id);
+                StartCoroutine(RespondToTrade(id, proposer, receiver));
+            }
         }
     }
 
@@ -128,7 +128,7 @@ public class TradeManager : MonoBehaviour
         form.AddField("tradeId", tradeID);
         form.AddField("response", 1);
 
-        UnityWebRequest www = UnityWebRequest.Post(jsonURL + "/trade/respond", form);
+        UnityWebRequest www = UnityWebRequest.Post(Files.JsonURL + "/trade/respond", form);
 
         yield return www.Send();
 
@@ -146,7 +146,7 @@ public class TradeManager : MonoBehaviour
     IEnumerator AcceptTrade(int tradeID, int proposer, int receiver)
     {
         Debug.Log("Accept trade - proposer: " + proposer + " - receiver: " + receiver);
-        UnityWebRequest www = UnityWebRequest.Get(jsonURL + "/trade/accepted?id=" + proposer);
+        UnityWebRequest www = UnityWebRequest.Get(Files.JsonURL + "/trade/accepted?id=" + proposer);
 
         yield return www.Send();
 

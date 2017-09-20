@@ -9,17 +9,17 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1045835061771772}
+  m_RootGameObject: {fileID: 1932790604460694}
   m_IsPrefabParent: 1
---- !u!1 &1045835061771772
+--- !u!1 &1932790604460694
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4570264713820106}
-  - component: {fileID: 114567434076709504}
+  - component: {fileID: 4766604943266194}
+  - component: {fileID: 114564000090222418}
   m_Layer: 5
   m_Name: GameManager
   m_TagString: Untagged
@@ -27,12 +27,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4570264713820106
+--- !u!4 &4766604943266194
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1045835061771772}
+  m_GameObject: {fileID: 1932790604460694}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 16.627686, z: 90}
   m_LocalScale: {x: 0.060140654, y: 0.060140654, z: 0.060140654}
@@ -40,26 +40,315 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114567434076709504
+--- !u!114 &114564000090222418
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1045835061771772}
+  m_GameObject: {fileID: 1932790604460694}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d919a3a1fd08eb4d9e34e9dca80bd23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collections:
-  - collectionID: 1
-    collectionName: Originals
-    flippos:
-    - id: 1
-      amount: 0
-      unlocked: 0
-      flippoImage: {fileID: 21300000, guid: 564d7f57053f8dd4f9f4ad10096aeb54, type: 3}
-    - id: 2
-      amount: 0
-      unlocked: 0
-      flippoImage: {fileID: 21300000, guid: 0093d6ec2816fec499d9fed6afad44c8, type: 3}
+  flippos:
+  - id: 1
+    sprite: {fileID: 21300000, guid: 564d7f57053f8dd4f9f4ad10096aeb54, type: 3}
+    collection: 0
+    rarity: 0
+  - id: 2
+    sprite: {fileID: 21300000, guid: 0093d6ec2816fec499d9fed6afad44c8, type: 3}
+    collection: 0
+    rarity: 0
+  - id: 3
+    sprite: {fileID: 21300000, guid: 9f0a795751f8a3747a70de4c87835509, type: 3}
+    collection: 0
+    rarity: 0
+  - id: 4
+    sprite: {fileID: 21300000, guid: cd963c8d9e8b64742b9b979a77e665fe, type: 3}
+    collection: 0
+    rarity: 0
+  - id: 5
+    sprite: {fileID: 21300000, guid: 108e18dff26d77a4dac33b263aedee47, type: 3}
+    collection: 0
+    rarity: 0
+  - id: 6
+    sprite: {fileID: 21300000, guid: 2169a2c0ee3bcb34d8d8cdbc133b86d4, type: 3}
+    collection: 0
+    rarity: 0
+  - id: 7
+    sprite: {fileID: 21300000, guid: 108e18dff26d77a4dac33b263aedee47, type: 3}
+    collection: 0
+    rarity: 0
+  - id: 8
+    sprite: {fileID: 21300000, guid: 4a846626848587445835050c5f36b01e, type: 3}
+    collection: 0
+    rarity: 0
+  - id: 9
+    sprite: {fileID: 21300000, guid: 05e028c7debfa5544b34fcb0fc606234, type: 3}
+    collection: 0
+    rarity: 0
+  - id: 10
+    sprite: {fileID: 21300000, guid: 1cbcb51c71454df4bbbc928066facc79, type: 3}
+    collection: 0
+    rarity: 0
+  - id: 11
+    sprite: {fileID: 21300000, guid: 705372ad55e5422428db73e79dd2b259, type: 3}
+    collection: 0
+    rarity: 0
+  - id: 12
+    sprite: {fileID: 21300000, guid: f74aca501521f3744bdfd8db50e7d802, type: 3}
+    collection: 0
+    rarity: 0
+  - id: 13
+    sprite: {fileID: 21300000, guid: efacfa8b8de9e9440aa4180aa67997d4, type: 3}
+    collection: 0
+    rarity: 0
+  - id: 14
+    sprite: {fileID: 21300000, guid: e74a4f541efcbbc4689630429a95bb28, type: 3}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0
+  - id: 0
+    sprite: {fileID: 0}
+    collection: 0
+    rarity: 0

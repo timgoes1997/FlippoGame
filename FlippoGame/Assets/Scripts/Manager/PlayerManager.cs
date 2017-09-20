@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Newtonsoft.Json.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -38,12 +39,24 @@ public class PlayerManager : MonoBehaviour
                 inventory = inv;
             }
         }
+        if (ss.Load(Files.Account))
+        {
+            Account account = ss.GetObject<Account>();
+            if(account != null)
+            {
+                acc = account;
+            }
+        }
+        else
+        {
+            StartCoroutine(CreateAccount());
+        }
     }
 
     // Use this for initialization
     void Start()
     {
-        StartCoroutine(GetAccountID());
+        
     }
 
     // Update is called once per frame
@@ -58,6 +71,14 @@ public class PlayerManager : MonoBehaviour
     void OnApplicationQuit()
     {
         SaveInventory();
+        SaveAccount();
+    }
+
+    public void SaveAccount()
+    {
+        ss.Clear();
+        ss.Add(acc);
+        ss.Save(Files.Account);
     }
 
     /// <summary>
@@ -71,11 +92,11 @@ public class PlayerManager : MonoBehaviour
         ss.Save(Files.FlippoData);
     }
 
-    IEnumerator GetAccountID()
+    IEnumerator CreateAccount()
     {
-
+        Debug.Log("Create account");
         WWWForm form = new WWWForm();
-        UnityWebRequest www = UnityWebRequest.Post("http://192.168.1.215:8080/account/create", form);
+        UnityWebRequest www = UnityWebRequest.Post(Files.JsonURL + "/account/create", form);
 
         yield return www.Send();
 
@@ -85,7 +106,11 @@ public class PlayerManager : MonoBehaviour
         }
         else
         {
-            Debug.Log(www.downloadHandler.text);
+            string json = www.downloadHandler.text;
+            Debug.Log(json);
+            var jo = JObject.Parse(json);
+            int id = jo["id"].Value<int>();
+            acc.Id = id;
         }
-    }
+    }    
 }
