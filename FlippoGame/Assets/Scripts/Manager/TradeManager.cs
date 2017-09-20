@@ -1,16 +1,166 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using System;
+using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class TradeManager : MonoBehaviour
-{ 
+{
+    public GameObject pendingTradeMenu;
+    public GameObject acceptedTradeMenu;
+    public GameObject requestedTradeMenu;
+    public GameObject declinedTradeMenu;
+    public GameObject tradeMenu;
+    public GameObject flippoCollectionMenu;
+
+    public GameObject proposedFlippoImage;
+    public GameObject requestedFlippoImage;
+    public Text otherTraderId;
+
+    private bool proposedFlippo = false;
+    private TradeItem currentTrade;
+
     // Use this for initialization
     void Start()
     {
+        currentTrade = new TradeItem();
         //StartCoroutine(GetTrades(1));
         //StartCoroutine(CreateAccount());
+    }
+
+    public void ActivatePendingTradeMenu()
+    {
+        acceptedTradeMenu.SetActive(false);
+        requestedTradeMenu.SetActive(false);
+        declinedTradeMenu.SetActive(false);
+        tradeMenu.SetActive(false);
+        flippoCollectionMenu.SetActive(false);
+        pendingTradeMenu.SetActive(true);
+    }
+
+    public void ActivateAcceptedTradeMenu()
+    {
+        pendingTradeMenu.SetActive(false);
+        requestedTradeMenu.SetActive(false);
+        declinedTradeMenu.SetActive(false);
+        tradeMenu.SetActive(false);
+        flippoCollectionMenu.SetActive(false);
+        acceptedTradeMenu.SetActive(true);
+    }
+
+    public void ActivateRequestedTradeMenu()
+    {
+        pendingTradeMenu.SetActive(false);
+        acceptedTradeMenu.SetActive(false);
+        declinedTradeMenu.SetActive(false);
+        tradeMenu.SetActive(false);
+        flippoCollectionMenu.SetActive(false);
+        requestedTradeMenu.SetActive(true);
+    }
+
+    public void ActivateDeclinedTradeMenu()
+    {
+        pendingTradeMenu.SetActive(false);
+        acceptedTradeMenu.SetActive(false);
+        requestedTradeMenu.SetActive(false);
+        tradeMenu.SetActive(false);
+        flippoCollectionMenu.SetActive(false);
+        declinedTradeMenu.SetActive(true);
+    }
+
+    public void ActivateTradeMenu()
+    {
+        pendingTradeMenu.SetActive(false);
+        acceptedTradeMenu.SetActive(false);
+        requestedTradeMenu.SetActive(false);
+        declinedTradeMenu.SetActive(false);
+        flippoCollectionMenu.SetActive(false);
+        tradeMenu.SetActive(true);
+    }
+
+    public void LoadRequestFlippoCollection()
+    {
+        pendingTradeMenu.SetActive(false);
+        acceptedTradeMenu.SetActive(false);
+        requestedTradeMenu.SetActive(false);
+        declinedTradeMenu.SetActive(false);
+        tradeMenu.SetActive(false);
+        flippoCollectionMenu.SetActive(true);
+        proposedFlippo = false;
+    }
+
+    public void LoadProposedFlippoCollection()
+    {
+        pendingTradeMenu.SetActive(false);
+        acceptedTradeMenu.SetActive(false);
+        requestedTradeMenu.SetActive(false);
+        declinedTradeMenu.SetActive(false);
+        tradeMenu.SetActive(false);
+        flippoCollectionMenu.SetActive(true);
+        proposedFlippo = true;
+    }
+
+    public void Trade()
+    {
+        string otherID = otherTraderId.text;
+        if (otherID == "") return; //Error message laten zien
+
+        int otherTrader = int.Parse(otherID);
+        
+        if (currentTrade != null && currentTrade.Proposed != null && currentTrade.Requested != null && PlayerManager.Instance.Account.Id != otherTrader && otherTrader > 0)
+        {
+            currentTrade.SetAccounts(PlayerManager.Instance.Account, new Account(otherTrader));
+            StartCoroutine(TradeRequest(currentTrade));
+        }
+    }
+
+    IEnumerator TradeRequest(TradeItem item)
+    {
+        Debug.Log("Create trade");
+        WWWForm form = new WWWForm();
+        form.AddField("accountId", item.Your.Id);
+        form.AddField("flippoId", item.Proposed.id);
+        form.AddField("otheraccId", item.Other.Id);
+        form.AddField("otherflippoId", item.Requested.id);
+
+        UnityWebRequest www = UnityWebRequest.Post(Files.JsonURL + "/trade/create", form);
+
+        yield return www.Send();
+
+        if (www.isNetworkError)
+        {
+            Debug.Log(www.error);
+            //failed message
+        }
+        else
+        {
+            Debug.Log(www.downloadHandler.text);
+            PlayerManager.Instance.Inventory.RemoveFlippo(item.Proposed.id);
+            ActivatePendingTradeMenu(); //toevoegen decline gemaakte proposed trade, als de user een fout maakt kan die namelijk niet zijn flippo terugkrijgen.
+            currentTrade = new TradeItem();
+        }
+    }
+
+    public void SetTradeFlippo(int id)
+    {
+        if(currentTrade == null) currentTrade = new TradeItem();
+
+        Flippo f = GameManager.Instance.GetFlippoByID(id);
+        if(f == null) return;
+
+        if (proposedFlippo)
+        {
+            currentTrade.SetProposedFlippo(f);
+            if (proposedFlippoImage != null) proposedFlippoImage.GetComponent<Image>().sprite = f.sprite;
+        }
+        else
+        {
+            currentTrade.SetRequestedFlippo(f);
+            if (requestedFlippoImage != null) requestedFlippoImage.GetComponent<Image>().sprite = f.sprite;
+        }
+        ActivateTradeMenu();
     }
 
     IEnumerator GetTrades(int accountID)

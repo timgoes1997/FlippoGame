@@ -22,6 +22,29 @@ public class Inventory {
         return true;
     }
 
+
+
+    public bool RemoveFlippo(int id)
+    {
+        for (int i = 0; i < flippos.Count; i++)
+        {
+            if (flippos[i].flippoID == id)
+            {
+                if (flippos[i].amount > 1)
+                {
+                    flippos[i].amount--;
+                    return true;
+                }
+                else
+                {
+                    flippos.Remove(flippos[i]);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public int GetFlippoAmount(Flippo flippo)
     {
         foreach(PlayerFlippo f in flippos)

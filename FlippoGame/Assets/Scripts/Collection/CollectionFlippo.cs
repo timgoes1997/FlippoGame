@@ -15,7 +15,8 @@ public class CollectionFlippo : MonoBehaviour, ICollectionFlippo
     private Flippo flippo;
 
     public int flippoAmount = 1;
-    public Text flippoText;
+    public Text flippoText;   
+    public TradeManager tradeManager;
 
 	// Use this for initialization
 	void Start () {
@@ -43,7 +44,9 @@ public class CollectionFlippo : MonoBehaviour, ICollectionFlippo
     {
 #if UNITY_EDITOR
         if(flippo != null)
-            Debug.Log("Pressed flippo:" + flippo.id);
+            Debug.Log("Pressed flippo:" + flippo.id);      
 #endif
+        if (tradeManager == null) return;
+        if (flippo != null) tradeManager.SetTradeFlippo(flippo.id);
     }
 }
