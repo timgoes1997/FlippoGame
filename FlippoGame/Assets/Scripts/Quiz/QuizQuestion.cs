@@ -7,7 +7,7 @@ public class QuizQuestion {
     public string answerAText;
     public string answerBText;
     public string answerCText;
-    public string answerText;
+    public Answer answer;
     public string imageName;
     public bool completed = false;
 }
