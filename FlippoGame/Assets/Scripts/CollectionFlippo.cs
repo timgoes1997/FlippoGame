@@ -36,7 +36,9 @@ public class CollectionFlippo : MonoBehaviour {
 
     public void OnClick()
     {
+#if UNITY_EDITOR
         if(flippo != null)
             Debug.Log("Pressed flippo:" + flippo.id);
+#endif
     }
 }
