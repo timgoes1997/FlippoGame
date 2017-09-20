@@ -21,4 +21,16 @@ public class Inventory {
         flippos.Add(new PlayerFlippo(id, 1));
         return true;
     }
+
+    public int GetFlippoAmount(Flippo flippo)
+    {
+        foreach(PlayerFlippo f in flippos)
+        {
+            if(flippo.id == f.flippoID)
+            {
+                return f.amount;
+            }
+        }
+        return -1;
+    }
 }

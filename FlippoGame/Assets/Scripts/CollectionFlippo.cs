@@ -13,6 +13,9 @@ public class CollectionFlippo : MonoBehaviour {
 
     private Flippo flippo;
 
+    public int flippoAmount = 1;
+    public Text flippoText;
+
 	// Use this for initialization
 	void Start () {
         myIcon = gridButton.GetComponent<Image>();
@@ -23,13 +26,14 @@ public class CollectionFlippo : MonoBehaviour {
 		
 	}
 
-    public void SetFlippoItem(Flippo flippo)
+    public void SetFlippoItem(Flippo flippo, int flippoAmount = 1)
     {
         if(myIcon == null)
         {
             myIcon = gridButton.GetComponent<Image>();
         }
 
+        flippoText.text = flippoAmount.ToString();
         myIcon.sprite = flippo.sprite;
         this.flippo = flippo;
     }
