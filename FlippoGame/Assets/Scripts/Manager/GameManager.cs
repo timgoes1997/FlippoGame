@@ -79,12 +79,12 @@ public class GameManager : MonoBehaviour
         return pFlippos;
     }
 
-    public void LoadSceneWithName(string sceneName)
+    public static void LoadSceneWithName(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
 
-    public void ExitGame()
+    public static void ExitGame()
     {
         Application.Quit();
     }

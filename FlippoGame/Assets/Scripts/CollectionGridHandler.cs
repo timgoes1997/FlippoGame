@@ -26,7 +26,7 @@ public class CollectionGridHandler : MonoBehaviour {
             GameObject gridButton = Instantiate(gridButtonTemplate) as GameObject;
             gridButton.SetActive(true);
 
-            gridButton.GetComponent<CollectionFlippo>().SetFlippoItem(f);
+            gridButton.GetComponent<CollectionFlippo>().SetFlippoItem(f, PlayerManager.Instance.Inventory.GetFlippoAmount(f));
             gridButton.transform.SetParent(gridButtonTemplate.transform.parent, false);
         }
     }
