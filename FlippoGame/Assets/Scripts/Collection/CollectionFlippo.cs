@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CollectionFlippo : MonoBehaviour {
+public class CollectionFlippo : MonoBehaviour, ICollectionFlippo
+{
 
     [SerializeField]
     private Image myIcon;
