@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private List<Flippo> flippos;
+    public int AmountOfFlippos { get { return flippos.Count; } }
 
     void Awake()
     {

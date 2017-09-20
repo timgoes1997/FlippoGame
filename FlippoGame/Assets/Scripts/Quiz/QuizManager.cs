@@ -18,9 +18,9 @@ public class QuizManager : MonoBehaviour {
     public GameObject btnGetFlippo;
     public GameObject btnNotGetFlippo;
 
-    public GameObject btnFlippo1;
-    public GameObject btnFlippo2;
-    public GameObject btnFlippo3;
+    public GameObject flippo1;
+    public GameObject flippo2;
+    public GameObject flippo3;
 
     // Use this for initialization
     void Start () {
@@ -102,9 +102,19 @@ public class QuizManager : MonoBehaviour {
 
     public void GetRandomFlippos()
     {
-        int newflippoIndex1 = Random.Range(0, 75/*TODO MAKE DYNAMIC*/);
-        int newflippoIndex2 = Random.Range(0, 75/*TODO MAKE DYNAMIC*/);
-        int newflippoIndex3 = Random.Range(0, 75/*TODO MAKE DYNAMIC*/);
+        Debug.Log(GameManager.Instance.AmountOfFlippos);
+        int newflippoIndex1 = Random.Range(1, GameManager.Instance.AmountOfFlippos + 1);
+        int newflippoIndex2 = Random.Range(1, GameManager.Instance.AmountOfFlippos + 1);
+        int newflippoIndex3 = Random.Range(1, GameManager.Instance.AmountOfFlippos + 1);
+        PlayerManager.Instance.Inventory.AddFlippo(newflippoIndex1);
+        PlayerManager.Instance.Inventory.AddFlippo(newflippoIndex2);
+        PlayerManager.Instance.Inventory.AddFlippo(newflippoIndex3);
+        Flippo f1 = GameManager.Instance.GetFlippoByID(newflippoIndex1);
+        Flippo f2 = GameManager.Instance.GetFlippoByID(newflippoIndex2);
+        Flippo f3 = GameManager.Instance.GetFlippoByID(newflippoIndex3);
+        flippo1.GetComponent<Image>().sprite = f1.sprite;
+        flippo2.GetComponent<Image>().sprite = f2.sprite;
+        flippo3.GetComponent<Image>().sprite = f3.sprite;
 
     }
     void MakeQuiz()
