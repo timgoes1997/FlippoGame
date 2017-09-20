@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
                 {
                     Debug.Log("Add");      
                     pFlippos.Add(f);
-                    if (flippos.Count == playerFlippos.Count)
+                    if (flippos.Count == pFlippos.Count)
                     {
                         return pFlippos;
                     }

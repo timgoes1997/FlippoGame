@@ -15,7 +15,7 @@ public class TradeManager : MonoBehaviour
 
     IEnumerator GetTrades(int accountID)
     {
-        UnityWebRequest www = UnityWebRequest.Get("http://192.168.1.215:8080/trade/item?id=" + accountID);
+        UnityWebRequest www = UnityWebRequest.Get(Files.JsonURL + "/trade/item?id=" + accountID);
 
         yield return www.Send();
 
