@@ -34,10 +34,14 @@ public class QuizManager : MonoBehaviour {
         if (CheckIfAllCompleted())
         {
             // No questions left
+            for (int i = 0; i < 20; i++)
+            {
+                quizQuestions[i].completed = false;
+            }
             Debug.Log("all questions complete");
         }
-        else
-        {
+        //else
+        //{
             do
             {
                 randomIndex = Random.Range(0, 20);
@@ -45,7 +49,7 @@ public class QuizManager : MonoBehaviour {
 
             //TODO: do somthing with the question
             LoadQuestion(randomIndex);
-        }
+        //}
         
        
     } 
