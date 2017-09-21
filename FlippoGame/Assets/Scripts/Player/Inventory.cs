@@ -64,6 +64,6 @@ public class Inventory {
                 return f.amount;
             }
         }
-        return -1;
+        return 0;
     }
 }

@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     private List<Flippo> flippos;
     public int AmountOfFlippos { get { return flippos.Count; } }
 
+    public List<Flippo> Flippos { get { return flippos; } }
+
     void Awake()
     {
         DontDestroyOnLoad(this);

@@ -90,6 +90,7 @@ public class TradeManager : MonoBehaviour
         requestedTradeMenu.SetActive(false);
         declinedTradeMenu.SetActive(false);
         tradeMenu.SetActive(false);
+        flippoCollectionMenu.GetComponent<IGrid>().SetGrid(false);
         flippoCollectionMenu.SetActive(true);
         proposedFlippo = true;
     }
@@ -101,6 +102,7 @@ public class TradeManager : MonoBehaviour
         requestedTradeMenu.SetActive(false);
         declinedTradeMenu.SetActive(false);
         tradeMenu.SetActive(false);
+        flippoCollectionMenu.GetComponent<IGrid>().SetGrid(true);
         flippoCollectionMenu.SetActive(true);
         proposedFlippo = false;
     }
@@ -261,7 +263,7 @@ public class TradeManager : MonoBehaviour
 
     public bool RespondToTrade(TradeItem item, bool accepted)
     {
-        if (PlayerManager.Instance.Inventory.HasFlippo(item.Proposed.id))
+        if (PlayerManager.Instance.Inventory.HasFlippo(item.Proposed.id) || accepted == false)
         {
             StartCoroutine(RespondToTradeCoroutine(item, accepted));
             return true;
@@ -286,8 +288,11 @@ public class TradeManager : MonoBehaviour
         }
         else
         {
-            PlayerManager.Instance.Inventory.RemoveFlippo(item.Proposed.id);
-            PlayerManager.Instance.Inventory.AddFlippo(item.Requested.id);
+            if (accepted)
+            {
+                PlayerManager.Instance.Inventory.RemoveFlippo(item.Proposed.id);
+                PlayerManager.Instance.Inventory.AddFlippo(item.Requested.id);
+            }
             ActivateRequestedTradeMenu();
         }
     }
