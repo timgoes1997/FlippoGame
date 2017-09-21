@@ -210,9 +210,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 821b75f8db59efd4d826c720c76bc2ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  proposedImage: {fileID: 0}
-  requestedImage: {fileID: 0}
-  otherTraderText: {fileID: 0}
+  proposedImage: {fileID: 114140446771720354}
+  requestedImage: {fileID: 114288728642632116}
+  otherTraderText: {fileID: 114026732970532660}
 --- !u!114 &114140446771720354
 MonoBehaviour:
   m_ObjectHideFlags: 1

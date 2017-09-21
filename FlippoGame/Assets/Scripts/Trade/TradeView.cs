@@ -9,6 +9,9 @@ public class TradeView : MonoBehaviour, ITradePanel
     public Image requestedImage;
     public Text otherTraderText;
 
+    public TradeItem item;
+    public TradeManager manager;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -35,8 +38,21 @@ public class TradeView : MonoBehaviour, ITradePanel
 
     public void SetupTradePanel(TradeItem item)
     {
-        if(proposedImage != null)  proposedImage.sprite = item.Proposed.sprite;
+        this.item = item;
+        if (proposedImage != null)  proposedImage.sprite = item.Proposed.sprite;
         if (requestedImage != null) requestedImage.sprite = item.Requested.sprite;
-        if (otherTraderText != null) otherTraderText.text = item.Other.Id.ToString();
+        if (otherTraderText != null) otherTraderText.text = "Trader: " + item.Other.Id.ToString();
+    }
+
+    public void AcceptTrade()
+    {
+        if (manager == null) return;
+        manager.RespondToTrade(item, true);
+    }
+
+    public void DeclineTrade()
+    {
+        if (manager == null) return;
+        manager.RespondToTrade(item, false);
     }
 }

@@ -7,6 +7,18 @@ public class Inventory {
     public int Id;
     public List<PlayerFlippo> flippos;	
 
+    public bool HasFlippo(int id)
+    {
+        foreach(PlayerFlippo f in flippos)
+        {
+            if(f.flippoID == id)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public bool AddFlippo(int id)
     {
         foreach(PlayerFlippo f in flippos)
@@ -21,8 +33,6 @@ public class Inventory {
         flippos.Add(new PlayerFlippo(id, 1));
         return true;
     }
-
-
 
     public bool RemoveFlippo(int id)
     {
