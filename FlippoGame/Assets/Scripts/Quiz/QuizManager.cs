@@ -20,7 +20,6 @@ public class QuizManager : MonoBehaviour {
 
     public GameObject flippo1;
     public GameObject flippo2;
-    public GameObject flippo3;
 
     // Use this for initialization
     void Start () {
@@ -34,7 +33,7 @@ public class QuizManager : MonoBehaviour {
         if (CheckIfAllCompleted())
         {
             // No questions left
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 23; i++)
             {
                 quizQuestions[i].completed = false;
             }
@@ -44,7 +43,7 @@ public class QuizManager : MonoBehaviour {
         //{
             do
             {
-                randomIndex = Random.Range(0, 20);
+                randomIndex = Random.Range(0, 23);
             } while (quizQuestions[randomIndex].completed);
 
             //TODO: do somthing with the question
@@ -86,7 +85,6 @@ public class QuizManager : MonoBehaviour {
         {
             //TODO: is wrong
             btnNotGetFlippo.SetActive(true);
-            Debug.Log("BAD");
         }
       
         GetQuestion();
@@ -106,25 +104,28 @@ public class QuizManager : MonoBehaviour {
 
     public void GetRandomFlippos()
     {
-        Debug.Log(GameManager.Instance.AmountOfFlippos);
+        Color spriteColor = new Color(255, 255, 255, 0);
+        flippo2.GetComponent<Image>().color = spriteColor;
         int newflippoIndex1 = Random.Range(1, GameManager.Instance.AmountOfFlippos + 1);
-        int newflippoIndex2 = Random.Range(1, GameManager.Instance.AmountOfFlippos + 1);
-        int newflippoIndex3 = Random.Range(1, GameManager.Instance.AmountOfFlippos + 1);
         PlayerManager.Instance.Inventory.AddFlippo(newflippoIndex1);
-        PlayerManager.Instance.Inventory.AddFlippo(newflippoIndex2);
-        PlayerManager.Instance.Inventory.AddFlippo(newflippoIndex3);
         Flippo f1 = GameManager.Instance.GetFlippoByID(newflippoIndex1);
-        Flippo f2 = GameManager.Instance.GetFlippoByID(newflippoIndex2);
-        Flippo f3 = GameManager.Instance.GetFlippoByID(newflippoIndex3);
         flippo1.GetComponent<Image>().sprite = f1.sprite;
-        flippo2.GetComponent<Image>().sprite = f2.sprite;
-        flippo3.GetComponent<Image>().sprite = f3.sprite;
 
+        if (Random.Range(0, 4) == 3)
+        {
+            Debug.Log("EXTRA FLIPPO");
+            Color newSpriteColor = new Color(255, 255, 255, 255);
+            flippo2.GetComponent<Image>().color = newSpriteColor;
+            int newflippoIndex2 = Random.Range(1, GameManager.Instance.AmountOfFlippos + 1);
+            PlayerManager.Instance.Inventory.AddFlippo(newflippoIndex2);
+            Flippo f2 = GameManager.Instance.GetFlippoByID(newflippoIndex2);
+            flippo2.GetComponent<Image>().sprite = f2.sprite;
+        }  
     }
     void MakeQuiz()
     {
-        quizQuestions = new QuizQuestion[20];
-        for (int i = 0; i < 20; i++)
+        quizQuestions = new QuizQuestion[23];
+        for (int i = 0; i < 23; i++)
         {
             quizQuestions[i] = new QuizQuestion();
         }
@@ -242,12 +243,30 @@ public class QuizManager : MonoBehaviour {
         quizQuestions[18].answerCText = "Gulden";
         quizQuestions[18].answer = Answer.C;
         quizQuestions[18].imageName = "imgGeld";
-        quizQuestions[19].questionText = "Wie zie je op de foto?";
-        quizQuestions[19].answerAText = "Chester"; 
-        quizQuestions[19].answerBText = "Cheetos";
-        quizQuestions[19].answerCText = "Cherder";
+        quizQuestions[19].questionText = "Welk nummer is niet van de Backstreet Boys?";
+        quizQuestions[19].answerAText = "Nothing ever happens"; 
+        quizQuestions[19].answerBText = "I want it that way";
+        quizQuestions[19].answerCText = "Anywhere for you";
         quizQuestions[19].answer = Answer.A;
-        quizQuestions[19].imageName = "imgChester";
+        quizQuestions[19].imageName = "imgBackstreet";
+        quizQuestions[20].questionText = "Wie zie je op de foto?";
+        quizQuestions[20].answerAText = "Chester";
+        quizQuestions[20].answerBText = "Cheetos";
+        quizQuestions[20].answerCText = "Cherder";
+        quizQuestions[20].answer = Answer.A;
+        quizQuestions[20].imageName = "imgChester";
+        quizQuestions[21].questionText = "Welk nummer is niet van Britney Spears?";
+        quizQuestions[21].answerAText = "Stronger";
+        quizQuestions[21].answerBText = "Toxic";
+        quizQuestions[21].answerCText = "Because of you";
+        quizQuestions[21].answer = Answer.C;
+        quizQuestions[21].imageName = "imgBritney";
+        quizQuestions[22].questionText = "In welk jaar is Windows XP uitgekomen?";
+        quizQuestions[22].answerAText = "2001";
+        quizQuestions[22].answerBText = "2002";
+        quizQuestions[22].answerCText = "2003";
+        quizQuestions[22].answer = Answer.A;
+        quizQuestions[22].imageName = "imgWindowsXP";
     }
 }
 
