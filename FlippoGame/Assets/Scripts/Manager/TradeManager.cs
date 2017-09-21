@@ -17,6 +17,7 @@ public class TradeManager : MonoBehaviour
 
     public GameObject proposedFlippoImage;
     public GameObject requestedFlippoImage;
+    public TradeGridHandler handler;
     public Text otherTraderId;
 
     private bool proposedFlippo = false;
@@ -38,6 +39,7 @@ public class TradeManager : MonoBehaviour
         tradeMenu.SetActive(false);
         flippoCollectionMenu.SetActive(false);
         pendingTradeMenu.SetActive(true);
+        GetPendingTrades(handler);
     }
 
     public void ActivateAcceptedTradeMenu()
@@ -163,6 +165,35 @@ public class TradeManager : MonoBehaviour
         ActivateTradeMenu();
     }
 
+
+    public void GetPendingTrades(TradeGridHandler handler)
+    {
+        if (PlayerManager.Instance.Account != null && handler != null)
+        {
+            StartCoroutine(GetPendingTradesEnumerator(PlayerManager.Instance.Account.Id, handler));
+        }
+    }
+
+    IEnumerator GetPendingTradesEnumerator(int proposerId, TradeGridHandler handler)
+    {
+        Debug.Log("Proposed trade");        
+
+        UnityWebRequest www = UnityWebRequest.Get(Files.JsonURL + "/trade/out?id=" + PlayerManager.Instance.Account.Id);
+
+        yield return www.Send();
+
+        if (www.isNetworkError)
+        {
+            Debug.Log(www.error);
+        }
+        else
+        {
+            Debug.Log(www.downloadHandler.text);
+            //handler.GenerateGridButtons();
+        }
+    }
+
+    #region old
     IEnumerator GetTrades(int accountID)
     {
         UnityWebRequest www = UnityWebRequest.Get(Files.JsonURL + "/trade/item?id=" + accountID);
@@ -310,4 +341,5 @@ public class TradeManager : MonoBehaviour
             Debug.Log(json);
         }
     }
+    #endregion
 }

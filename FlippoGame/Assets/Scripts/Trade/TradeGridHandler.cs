@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TradeGridHandler : MonoBehaviour {
 
+    public TradeManager tradeManager;
 
     [SerializeField]
     private GameObject tradePanelObject;
@@ -11,7 +12,8 @@ public class TradeGridHandler : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        GenerateGridButtons();
+        tradeManager.GetPendingTrades(this);
+        //GenerateGridButtons();
     }
 
     // Update is called once per frame
@@ -20,7 +22,7 @@ public class TradeGridHandler : MonoBehaviour {
 
     }
 
-    private void GenerateGridButtons()
+    public void GenerateGridButtons(List<TradeItem> tradeItems)
     {
         /*
         foreach (Flippo f in GameManager.Instance.GetFlippoByPlayerFlippo(PlayerManager.Instance.Inventory.flippos, filter))
