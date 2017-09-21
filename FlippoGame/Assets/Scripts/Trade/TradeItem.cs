@@ -10,6 +10,7 @@ public class TradeItem
     private Account other;
     private Account yours;
 
+    public int ID { get { return tradeId; } }
     public Flippo Proposed { get { return proposed; } }
     public Flippo Requested { get { return requested; } }   
     public Account Other { get { return other; } }

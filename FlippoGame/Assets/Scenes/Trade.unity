@@ -1159,8 +1159,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef39d7f436dbf0458653fb29e9912b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tradeManager: {fileID: 0}
-  tradePanelObject: {fileID: 0}
+  tradeManager: {fileID: 116853473}
+  tradePanelObject: {fileID: 698310019}
 --- !u!1 &771738539
 GameObject:
   m_ObjectHideFlags: 0
