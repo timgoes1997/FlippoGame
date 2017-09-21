@@ -237,6 +237,7 @@ MonoBehaviour:
   flippoCollectionMenu: {fileID: 1081785957}
   proposedFlippoImage: {fileID: 871167138}
   requestedFlippoImage: {fileID: 50124863}
+  handler: {fileID: 2052880884}
   otherTraderId: {fileID: 899902923}
 --- !u!4 &116853474
 Transform:
@@ -1158,6 +1159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef39d7f436dbf0458653fb29e9912b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tradeManager: {fileID: 0}
   tradePanelObject: {fileID: 0}
 --- !u!1 &771738539
 GameObject:
@@ -2562,7 +2564,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -0.000061035156}
-  m_SizeDelta: {x: 1000, y: 805}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1700833646
 MonoBehaviour:
@@ -3071,6 +3073,19 @@ GameObject:
   m_PrefabParentObject: {fileID: 1816252448770016, guid: 4f06600403b574a488bed8ba7f75fdb0,
     type: 2}
   m_PrefabInternal: {fileID: 1027967682}
+--- !u!114 &2052880884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2052880883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef39d7f436dbf0458653fb29e9912b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tradeManager: {fileID: 116853473}
+  tradePanelObject: {fileID: 2052880883}
 --- !u!224 &2061267867 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224051437579755208, guid: e8d75a8ad6eaddf4fbef8865a6b0b95a,
