@@ -50,6 +50,7 @@ public class TradeManager : MonoBehaviour
         tradeMenu.SetActive(false);
         flippoCollectionMenu.SetActive(false);
         acceptedTradeMenu.SetActive(true);
+        GetAcceptedTrades(handler);
     }
 
     public void ActivateRequestedTradeMenu()
@@ -90,9 +91,9 @@ public class TradeManager : MonoBehaviour
         requestedTradeMenu.SetActive(false);
         declinedTradeMenu.SetActive(false);
         tradeMenu.SetActive(false);
-        flippoCollectionMenu.GetComponent<IGrid>().SetGrid(false);
+        flippoCollectionMenu.GetComponent<IGrid>().SetGrid(true);
         flippoCollectionMenu.SetActive(true);
-        proposedFlippo = true;
+        proposedFlippo = false;
     }
 
     public void LoadProposedFlippoCollection()
@@ -102,9 +103,9 @@ public class TradeManager : MonoBehaviour
         requestedTradeMenu.SetActive(false);
         declinedTradeMenu.SetActive(false);
         tradeMenu.SetActive(false);
-        flippoCollectionMenu.GetComponent<IGrid>().SetGrid(true);
+        flippoCollectionMenu.GetComponent<IGrid>().SetGrid(false);
         flippoCollectionMenu.SetActive(true);
-        proposedFlippo = false;
+        proposedFlippo = true;
     }
 
     public void Trade()
@@ -114,7 +115,7 @@ public class TradeManager : MonoBehaviour
 
         int otherTrader = int.Parse(otherID);
 
-        if (currentTrade != null && currentTrade.Proposed != null && currentTrade.Requested != null && PlayerManager.Instance.Account.Id != otherTrader && otherTrader > 0)
+        if (currentTrade != null && currentTrade.ProposedFlippo != null && currentTrade.RequestedFlippo != null && PlayerManager.Instance.Account.Id != otherTrader && otherTrader > 0)
         {
             currentTrade.SetAccounts(PlayerManager.Instance.Account, new Account(otherTrader));
             StartCoroutine(TradeRequest(currentTrade));
@@ -125,10 +126,10 @@ public class TradeManager : MonoBehaviour
     {
         Debug.Log("Create trade");
         WWWForm form = new WWWForm();
-        form.AddField("accountId", item.Your.Id);
-        form.AddField("flippoId", item.Proposed.id);
-        form.AddField("otheraccId", item.Other.Id);
-        form.AddField("otherflippoId", item.Requested.id);
+        form.AddField("accountId", item.Proposer.Id);
+        form.AddField("flippoId", item.ProposedFlippo.id);
+        form.AddField("otheraccId", item.Requester.Id);
+        form.AddField("otherflippoId", item.RequestedFlippo.id);
 
         UnityWebRequest www = UnityWebRequest.Post(Files.JsonURL + "/trade/create", form);
 
@@ -142,7 +143,7 @@ public class TradeManager : MonoBehaviour
         else
         {
             Debug.Log(www.downloadHandler.text);
-            PlayerManager.Instance.Inventory.RemoveFlippo(item.Proposed.id);
+            PlayerManager.Instance.Inventory.RemoveFlippo(item.ProposedFlippo.id);
             ActivatePendingTradeMenu(); //toevoegen decline gemaakte proposed trade, als de user een fout maakt kan die namelijk niet zijn flippo terugkrijgen.
             currentTrade = new TradeItem();
         }
@@ -157,12 +158,12 @@ public class TradeManager : MonoBehaviour
 
         if (proposedFlippo)
         {
-            currentTrade.SetProposedFlippo(f);
+            currentTrade.SetRequestedFlippo(f);
             if (proposedFlippoImage != null) proposedFlippoImage.GetComponent<Image>().sprite = f.sprite;
         }
         else
         {
-            currentTrade.SetRequestedFlippo(f);
+            currentTrade.SetProposedFlippo(f);
             if (requestedFlippoImage != null) requestedFlippoImage.GetComponent<Image>().sprite = f.sprite;
         }
         ActivateTradeMenu();
@@ -201,13 +202,18 @@ public class TradeManager : MonoBehaviour
             {
                 //{"id":0,"proposer":{"id":7},"proposerFlippo":{"id":2},"reciever":{"id":2},"receiverFlippo":{"id":6}}
                 int tradeID = item.GetValue("id").Value<int>();
-                int yourID = item["proposer"]["id"].Value<int>();
-                int flippoID = item["proposerFlippo"]["id"].Value<int>();
-                int receiverID = item["reciever"]["id"].Value<int>();
-                int receiverFlippoID = item["receiverFlippo"]["id"].Value<int>();
-                Debug.Log(tradeID + "-" + yourID + "-" + flippoID + "-" + receiverID + "-" + receiverFlippoID);
+                int proposer = item["proposer"]["id"].Value<int>();
+                int proposedFlippo = item["proposerFlippo"]["id"].Value<int>();
+                int requester = item["reciever"]["id"].Value<int>();
+                int requestedFlippo = item["receiverFlippo"]["id"].Value<int>();
+                Debug.Log(tradeID + "-" + proposer + "-" + proposedFlippo + "-" + requester + "-" + requestedFlippo);
 
-                trades.Add(new TradeItem(tradeID, GameManager.Instance.GetFlippoByID(flippoID), GameManager.Instance.GetFlippoByID(receiverFlippoID), new Account(receiverID), new Account(yourID)));
+                trades.Add(new TradeItem(tradeID, 
+                    GameManager.Instance.GetFlippoByID(proposedFlippo), 
+                    GameManager.Instance.GetFlippoByID(requestedFlippo),
+                    new Account(proposer), 
+                    new Account(requester)
+                    ));
             }
             handler.GenerateGridButtons(trades);
         }
@@ -245,17 +251,19 @@ public class TradeManager : MonoBehaviour
             {
                 //{"id":0,"proposer":{"id":7},"proposerFlippo":{"id":2},"reciever":{"id":2},"receiverFlippo":{"id":6}}
                 int tradeID = item.GetValue("id").Value<int>();
-                int yourID = item["proposer"]["id"].Value<int>();
-                int flippoID = item["proposerFlippo"]["id"].Value<int>();
-                int receiverID = item["reciever"]["id"].Value<int>();
-                int receiverFlippoID = item["receiverFlippo"]["id"].Value<int>();
-                Debug.Log(tradeID + "-" + yourID + "-" + flippoID + "-" + receiverID + "-" + receiverFlippoID);
+                int proposer = item["proposer"]["id"].Value<int>();
+                int proposedFlippo = item["proposerFlippo"]["id"].Value<int>();
+                int requester = item["reciever"]["id"].Value<int>();
+                int requestedFlippo = item["receiverFlippo"]["id"].Value<int>();
+                Debug.Log(tradeID + "-" + proposer + "-" + proposedFlippo + "-" + requester + "-" + requestedFlippo);
 
+                //iets logischer maken volgende sprint door generategridbuttons juist te doen afhankelijk van proposer.
                 trades.Add(new TradeItem(tradeID,
-                    GameManager.Instance.GetFlippoByID(receiverFlippoID),
-                    GameManager.Instance.GetFlippoByID(flippoID),
-                    new Account(yourID),
-                    new Account(receiverID)));
+                    GameManager.Instance.GetFlippoByID(proposedFlippo),
+                    GameManager.Instance.GetFlippoByID(requestedFlippo),
+                    new Account(proposer),
+                    new Account(requester)
+                    ));
             }
             handler.GenerateGridButtons(trades, true);
         }
@@ -263,13 +271,13 @@ public class TradeManager : MonoBehaviour
 
     public bool RespondToTrade(TradeItem item, bool accepted)
     {
-        if (PlayerManager.Instance.Inventory.HasFlippo(item.Proposed.id) || accepted == false)
+        if (PlayerManager.Instance.Inventory.HasFlippo(item.RequestedFlippo.id) || accepted == false)
         {
             StartCoroutine(RespondToTradeCoroutine(item, accepted));
             return true;
         }
         return false;
-    }
+    }   
 
     IEnumerator RespondToTradeCoroutine(TradeItem item, bool accepted)
     {
@@ -290,10 +298,59 @@ public class TradeManager : MonoBehaviour
         {
             if (accepted)
             {
-                PlayerManager.Instance.Inventory.RemoveFlippo(item.Proposed.id);
-                PlayerManager.Instance.Inventory.AddFlippo(item.Requested.id);
+                PlayerManager.Instance.Inventory.RemoveFlippo(item.ProposedFlippo.id);
+                PlayerManager.Instance.Inventory.AddFlippo(item.RequestedFlippo.id);
             }
             ActivateRequestedTradeMenu();
+        }
+    }
+
+
+    public void GetAcceptedTrades(TradeGridHandler handler)
+    {
+        StartCoroutine(AcceptedTradesEnumerator(handler));
+    }
+
+    IEnumerator AcceptedTradesEnumerator(TradeGridHandler handler)
+    {
+        Debug.Log("Accepted trades");
+        UnityWebRequest www = UnityWebRequest.Get(Files.JsonURL + "/trade/accepted?id=" + PlayerManager.Instance.Account.Id);
+
+        yield return www.Send();
+
+        if (www.isNetworkError)
+        {
+            Debug.Log(www.error);
+        }
+        else
+        {
+            string json = www.downloadHandler.text;
+#if UNITY_EDITOR
+            Debug.Log(json);
+#endif
+            var jArray = JArray.Parse(json);
+            List<TradeItem> trades = new List<TradeItem>();
+            foreach (JObject item in jArray.Children())
+            {
+                //{"id":0,"proposer":{"id":7},"proposerFlippo":{"id":2},"reciever":{"id":2},"receiverFlippo":{"id":6}}
+                int tradeID = item.GetValue("id").Value<int>();
+                int proposer = item["proposer"]["id"].Value<int>();
+                int proposedFlippo = item["proposerFlippo"]["id"].Value<int>();
+                int requester = item["reciever"]["id"].Value<int>();
+                int requestedFlippo = item["receiverFlippo"]["id"].Value<int>();
+                Debug.Log(tradeID + "-" + proposer + "-" + proposedFlippo + "-" + requester + "-" + requestedFlippo);
+
+                //iets logischer maken volgende sprint door generategridbuttons juist te doen afhankelijk van proposer.
+                trades.Add(new TradeItem(tradeID,
+                    GameManager.Instance.GetFlippoByID(proposedFlippo),
+                    GameManager.Instance.GetFlippoByID(requestedFlippo),
+                    new Account(proposer),
+                    new Account(requester)
+                    ));
+
+                PlayerManager.Instance.Inventory.AddFlippo(requestedFlippo);
+            }
+            handler.GenerateGridButtons(trades, false);
         }
     }
 

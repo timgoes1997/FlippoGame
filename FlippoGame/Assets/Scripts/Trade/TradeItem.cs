@@ -5,32 +5,32 @@ using UnityEngine;
 public class TradeItem
 {
     private int tradeId;
-    private Flippo proposed;
-    private Flippo requested;
-    private Account other;
-    private Account yours;
+    private Flippo requestedFlippo;
+    private Flippo proposedFlippo;
+    private Account requester;
+    private Account proposer;
 
     public int ID { get { return tradeId; } }
-    public Flippo Proposed { get { return proposed; } }
-    public Flippo Requested { get { return requested; } }   
-    public Account Other { get { return other; } }
-    public Account Your { get { return yours; } }
+    public Flippo ProposedFlippo { get { return proposedFlippo; } }
+    public Flippo RequestedFlippo { get { return requestedFlippo; } }   
+    public Account Requester { get { return requester; } }
+    public Account Proposer { get { return proposer; } }
 
-    public TradeItem(int tradeId, Flippo proposed, Flippo requested, Account other, Account yours)
+    public TradeItem(int tradeId, Flippo proposedFlippo, Flippo requestedFlippo, Account proposer, Account requester)
     {
         this.tradeId = tradeId;
-        this.proposed = proposed;
-        this.requested = requested;
-        this.other = other;
-        this.yours = yours;
+        this.proposedFlippo = proposedFlippo;
+        this.requestedFlippo = requestedFlippo;
+        this.requester = requester;
+        this.proposer = proposer;
     }
 
-    public TradeItem(Flippo proposed, Flippo requested, Account other, Account yours)
+    public TradeItem(Flippo proposedFlippo, Flippo requestedFlippo, Account proposer, Account requester)
     {
-        this.proposed = proposed;
-        this.requested = requested;
-        this.other = other;
-        this.yours = yours;
+        this.proposedFlippo = proposedFlippo;
+        this.requestedFlippo = requestedFlippo;
+        this.requester = proposer;
+        this.proposer = requester;
     }
 
     public TradeItem()
@@ -40,17 +40,17 @@ public class TradeItem
 
     public void SetProposedFlippo(Flippo proposed)
     {
-        this.proposed = proposed;
+        this.proposedFlippo = proposed;
     }
 
     public void SetRequestedFlippo(Flippo requested)
     {
-        this.requested = requested;
+        this.requestedFlippo = requested;
     }
 
-    public void SetAccounts(Account yours, Account other)
+    public void SetAccounts(Account proposer, Account requester)
     {
-        this.yours = yours;
-        this.other = other;
+        this.proposer = proposer;
+        this.requester = requester;
     }
 }

@@ -1615,7 +1615,7 @@ Prefab:
     - target: {fileID: 114489562771209204, guid: 4f06600403b574a488bed8ba7f75fdb0,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadProposedFlippoCollection
+      value: LoadRequestFlippoCollection
       objectReference: {fileID: 0}
     - target: {fileID: 114489562771209204, guid: 4f06600403b574a488bed8ba7f75fdb0,
         type: 2}
@@ -1640,7 +1640,7 @@ Prefab:
     - target: {fileID: 114189003825620514, guid: 4f06600403b574a488bed8ba7f75fdb0,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadRequestFlippoCollection
+      value: LoadProposedFlippoCollection
       objectReference: {fileID: 0}
     - target: {fileID: 114189003825620514, guid: 4f06600403b574a488bed8ba7f75fdb0,
         type: 2}
@@ -1689,7 +1689,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1816252448770016, guid: 4f06600403b574a488bed8ba7f75fdb0, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1016324915592232, guid: 4f06600403b574a488bed8ba7f75fdb0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1417190173320386, guid: 4f06600403b574a488bed8ba7f75fdb0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1417190173320386, guid: 4f06600403b574a488bed8ba7f75fdb0, type: 2}
+      propertyPath: m_Name
+      value: btnRequestedFlippo
+      objectReference: {fileID: 0}
+    - target: {fileID: 1675826416150392, guid: 4f06600403b574a488bed8ba7f75fdb0, type: 2}
+      propertyPath: m_Name
+      value: btnProposedFlippo
+      objectReference: {fileID: 0}
+    - target: {fileID: 1675826416150392, guid: 4f06600403b574a488bed8ba7f75fdb0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4f06600403b574a488bed8ba7f75fdb0, type: 2}
