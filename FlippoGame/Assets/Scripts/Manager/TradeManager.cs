@@ -263,7 +263,7 @@ public class TradeManager : MonoBehaviour
 
     public bool RespondToTrade(TradeItem item, bool accepted)
     {
-        if (PlayerManager.Instance.Inventory.HasFlippo(item.Proposed.id))
+        if (PlayerManager.Instance.Inventory.HasFlippo(item.Proposed.id) || accepted == false)
         {
             StartCoroutine(RespondToTradeCoroutine(item, accepted));
             return true;
