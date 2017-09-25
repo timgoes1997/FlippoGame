@@ -7,6 +7,7 @@ public class TradeItem
     private int tradeId;
     private Trade requester;
     private Trade proposer;
+    private bool accepted;
 
     public int ID { get { return tradeId; } }
     public Trade Requester { get { return requester; } }
@@ -15,6 +16,7 @@ public class TradeItem
     public Flippo RequestedFlippo { get { return requester.Item; } }   
     public Account RequesterAccount { get { return proposer.Account; } }
     public Account ProposerAccount { get { return proposer.Account; } }
+    public bool Accepted { get { return accepted; } }
 
     public TradeItem(Trade requester, Trade proposer)
     {
@@ -28,12 +30,26 @@ public class TradeItem
         this.proposer = proposer;
     }
 
+    public TradeItem(int tradeId, Trade requester, Trade proposer, bool accepted = false)
+    {
+        this.requester = requester;
+        this.proposer = proposer;
+        this.accepted = accepted;
+    }
 
     public TradeItem(int tradeId, Flippo proposedFlippo, Flippo requestedFlippo, Account proposer, Account requester)
     {
         this.tradeId = tradeId;
         this.requester = new Trade(requester, requestedFlippo);
         this.proposer = new Trade(proposer, proposedFlippo);
+    }
+
+    public TradeItem(int tradeId, Flippo proposedFlippo, Flippo requestedFlippo, Account proposer, Account requester, bool accepted = false)
+    {
+        this.tradeId = tradeId;
+        this.requester = new Trade(requester, requestedFlippo);
+        this.proposer = new Trade(proposer, proposedFlippo);
+        this.accepted = accepted;
     }
 
     public TradeItem(Flippo proposedFlippo, Flippo requestedFlippo, Account proposer, Account requester)
