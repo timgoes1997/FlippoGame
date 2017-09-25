@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class CollectionGridHandler : MonoBehaviour, IGrid
 {
 
@@ -11,7 +10,7 @@ public class CollectionGridHandler : MonoBehaviour, IGrid
 
     [SerializeField]
     private GameObject gridButtonTemplate;
-
+    
     public List<GameObject> currentChildren;
 
     // Use this for initialization

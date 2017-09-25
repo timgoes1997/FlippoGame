@@ -45,7 +45,7 @@ public class TradeView : MonoBehaviour, ITradePanel
         bool isProposer = false;
         if (item.Proposer != null && item.Requester != null)
         {
-            isProposer = item.Proposer.Id == PlayerManager.Instance.Account.Id;
+            isProposer = item.Proposer.Account.Id == PlayerManager.Instance.Account.Id;
         }
         else
         {
@@ -53,9 +53,9 @@ public class TradeView : MonoBehaviour, ITradePanel
                 otherTraderText.text = "Trader: Unkown";
         }     
 
-        if (proposedImage != null) proposedImage.sprite = (isProposer) ? item.ProposedFlippo.sprite : item.RequestedFlippo.sprite;
-        if (requestedImage != null) requestedImage.sprite = (isProposer) ? item.RequestedFlippo.sprite : item.ProposedFlippo.sprite;
-        if (otherTraderText != null) otherTraderText.text = (isProposer) ? "Trader: " + item.Proposer.Id.ToString() : "Trader: " + item.Requester.Id.ToString();
+        if (proposedImage != null) proposedImage.sprite = (isProposer) ? item.Proposer.Item.sprite : item.Requester.Item.sprite;
+        if (requestedImage != null) requestedImage.sprite = (isProposer) ? item.Requester.Item.sprite : item.Proposer.Item.sprite;
+        if (otherTraderText != null) otherTraderText.text = (isProposer) ? "Trader: " + item.Proposer.Account.ToString() : "Trader: " + item.Requester.Account.Id.ToString();
     }
 
     public void AcceptTrade()
