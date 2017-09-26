@@ -18,6 +18,7 @@ public class QuizManager : MonoBehaviour {
 
     public GameObject panelOk;
     public GameObject panelBad;
+    public GameObject lockstreen;
 
     // Use this for initialization
     void Start () {
@@ -48,8 +49,8 @@ public class QuizManager : MonoBehaviour {
             //TODO: do somthing with the question
             LoadQuestion(randomIndex);
         //}
-        
-       
+
+        lockstreen.SetActive(false);
     } 
 
     void LoadQuestion(int index)

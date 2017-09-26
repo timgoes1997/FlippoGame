@@ -172,3 +172,43 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: cef37d6b49f882b4c82e2420d677731f, type: 3}
     collection: 0
     rarity: 0
+  - id: 31
+    sprite: {fileID: 21300000, guid: f80173b4889268f468a107df83dabf73, type: 3}
+    collection: 0
+    rarity: 0
+  - id: 32
+    sprite: {fileID: 21300000, guid: 2a0144fe19b8d5842803994638661cb9, type: 3}
+    collection: 0
+    rarity: 0
+  - id: 33
+    sprite: {fileID: 21300000, guid: 8fc2c0c13274c0a43939a64a2c0d7327, type: 3}
+    collection: 0
+    rarity: 0
+  - id: 34
+    sprite: {fileID: 21300000, guid: 6444a03ba8951da40b2a9703dc49ccd2, type: 3}
+    collection: 0
+    rarity: 0
+  - id: 35
+    sprite: {fileID: 21300000, guid: 8d633fb262b3a30439f72b89abe53aae, type: 3}
+    collection: 0
+    rarity: 0
+  - id: 36
+    sprite: {fileID: 21300000, guid: 29da0ace8b6798c4d934c924fb8a55e9, type: 3}
+    collection: 0
+    rarity: 0
+  - id: 37
+    sprite: {fileID: 21300000, guid: c05d98fe9c27bee4cb35b41b44634733, type: 3}
+    collection: 0
+    rarity: 0
+  - id: 38
+    sprite: {fileID: 21300000, guid: 44576297c9620f647a8990afa96a9f62, type: 3}
+    collection: 0
+    rarity: 0
+  - id: 39
+    sprite: {fileID: 21300000, guid: fb4e6aee4f59a014083b889d2ab8bc5f, type: 3}
+    collection: 0
+    rarity: 0
+  - id: 40
+    sprite: {fileID: 21300000, guid: 58d077084eaaaa4408d0e5f2395286ac, type: 3}
+    collection: 0
+    rarity: 0

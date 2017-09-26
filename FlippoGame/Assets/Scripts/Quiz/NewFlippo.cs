@@ -17,7 +17,7 @@ public class NewFlippo : MonoBehaviour {
 	}
     
     public void StartAnimation()
-    {
+    {   
         GetComponent<Animation>().Play();
     }
 
