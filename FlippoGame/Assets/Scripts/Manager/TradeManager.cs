@@ -29,7 +29,7 @@ public class TradeManager : MonoBehaviour
     private void Awake()
     {
         defaultSpritePropose = proposedFlippoImage.GetComponent<Image>().sprite;
-        defaultSpriteRequest = requestedFlippoImage.GetComponent<Image>().sprite;
+        defaultSpriteRequest = requestedFlippoImage.GetComponent<Image>().sprite;        
     }
 
     // Use this for initialization
@@ -460,7 +460,7 @@ public class TradeManager : MonoBehaviour
 
     public void ShowError(string error)
     {
-        if (messageBox == null) messageBox = Instantiate(Resources.Load("Messages/MsgBox", typeof(GameObject))) as GameObject;
+        if (messageBox == null) messageBox = Instantiate(Resources.Load("Messages/MsgBox", typeof(GameObject)), FindObjectOfType<Canvas>().transform, false) as GameObject;
         
         if(messageBox != null)
         {
