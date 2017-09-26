@@ -8,21 +8,20 @@ public class QuizManager : MonoBehaviour {
     QuizQuestion[] quizQuestions;
     int randomIndex;
 
+    Canvas canvas;
+
     public Image questionImage;
     public Text questionText;
     public Text AnswerTextA;
     public Text AnswerTextB;
     public Text AnswerTextC;
 
-    public GameObject infoPanel;
-    public GameObject btnGetFlippo;
-    public GameObject btnNotGetFlippo;
-
-    public GameObject flippo1;
-    public GameObject flippo2;
+    public GameObject panelOk;
+    public GameObject panelBad;
 
     // Use this for initialization
     void Start () {
+        canvas = FindObjectOfType<Canvas>();
         MakeQuiz();
         GetQuestion();
     }
@@ -75,19 +74,16 @@ public class QuizManager : MonoBehaviour {
                 break;
         }
 
-        infoPanel.SetActive(true);
+       
         if (multiAnswer == quizQuestions[randomIndex].answer)
         {
             quizQuestions[randomIndex].completed = true;
-            btnGetFlippo.SetActive(true);
+            panelOk.SetActive(true);
         }
         else
         {
-            //TODO: is wrong
-            btnNotGetFlippo.SetActive(true);
+            panelBad.SetActive(true);
         }
-      
-        GetQuestion();
     }
 
     bool CheckIfAllCompleted()
@@ -104,22 +100,24 @@ public class QuizManager : MonoBehaviour {
 
     public void GetRandomFlippos()
     {
-        Color spriteColor = new Color(255, 255, 255, 0);
-        flippo2.GetComponent<Image>().color = spriteColor;
         int newflippoIndex1 = Random.Range(1, GameManager.Instance.AmountOfFlippos + 1);
         PlayerManager.Instance.Inventory.AddFlippo(newflippoIndex1);
         Flippo f1 = GameManager.Instance.GetFlippoByID(newflippoIndex1);
+        GameObject flippo1 = Instantiate(Resources.Load("newFlippo"), canvas.transform, false) as GameObject;
         flippo1.GetComponent<Image>().sprite = f1.sprite;
+        flippo1.GetComponent<NewFlippo>().StartAnimation();
 
         if (Random.Range(0, 4) == 3)
         {
             Debug.Log("EXTRA FLIPPO");
-            Color newSpriteColor = new Color(255, 255, 255, 255);
-            flippo2.GetComponent<Image>().color = newSpriteColor;
             int newflippoIndex2 = Random.Range(1, GameManager.Instance.AmountOfFlippos + 1);
             PlayerManager.Instance.Inventory.AddFlippo(newflippoIndex2);
             Flippo f2 = GameManager.Instance.GetFlippoByID(newflippoIndex2);
+            GameObject flippo2 = Instantiate(Resources.Load("newFlippo"), canvas.transform, false) as GameObject;
             flippo2.GetComponent<Image>().sprite = f2.sprite;
+            flippo2.GetComponent<NewFlippo>().getNewQuestion = false;
+            flippo2.GetComponent<NewFlippo>().StartAnimation();
+
         }  
     }
     void MakeQuiz()

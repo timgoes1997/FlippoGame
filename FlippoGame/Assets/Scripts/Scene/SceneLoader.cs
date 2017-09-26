@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour {
 
+    public GameObject collectionPanel;
+
     public void LoadSceneByIndex(int index)
     {
         SceneManager.LoadScene(index);
@@ -18,5 +20,14 @@ public class SceneLoader : MonoBehaviour {
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    public void MoveCollectionPanelUp()
+    {
+        collectionPanel.GetComponent<Animator>().SetBool("Up", true);
+    }
+    public void MoveCollectionPanelDown()
+    {
+        collectionPanel.GetComponent<Animator>().SetBool("Up", false);
     }
 }
