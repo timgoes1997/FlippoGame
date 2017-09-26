@@ -32,7 +32,6 @@ public class TradeGridHandler : MonoBehaviour {
 
     public void GenerateGridButtons(List<TradeItem> tradeItems, bool request = false)
     {
-        Debug.Log(tradeItems.Count);
         if (tradeView == null) return;
         if (tradeRequestView == null) return;
         if (currentChildren == null) currentChildren = new List<GameObject>();

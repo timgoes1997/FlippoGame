@@ -20,6 +20,7 @@ public class TradeManager : MonoBehaviour
 
     public GameObject proposedFlippoImage;
     public GameObject requestedFlippoImage;
+    public GameObject messageBox;
     public TradeGridHandler handler;
 
     private bool proposedFlippo = false;
@@ -145,7 +146,7 @@ public class TradeManager : MonoBehaviour
 #if UNITY_EDITOR
             Debug.Log(www.error);
 #endif
-            //Create messagebox with error
+            ShowError(www.error);
         }
         else
         {
@@ -219,7 +220,7 @@ public class TradeManager : MonoBehaviour
 #if UNITY_EDITOR
             Debug.Log(www.error);
 #endif
-            //Create messagebox with error
+            ShowError(www.error);
         }
         else
         {
@@ -269,7 +270,7 @@ public class TradeManager : MonoBehaviour
 #if UNITY_EDITOR
             Debug.Log(www.error);
 #endif
-            //Create messagebox with error
+            ShowError(www.error);
         }
         else
         {
@@ -338,7 +339,7 @@ public class TradeManager : MonoBehaviour
 #if UNITY_EDITOR
             Debug.Log(www.error);
 #endif
-            //Create messagebox with error
+            ShowError(www.error);
         }
         else
         {
@@ -393,7 +394,7 @@ public class TradeManager : MonoBehaviour
 #if UNITY_EDITOR
             Debug.Log(www.error);
 #endif
-            //Create messagebox with error
+            ShowError(www.error);
         }
         else
         {
@@ -419,14 +420,16 @@ public class TradeManager : MonoBehaviour
 #endif
         UnityWebRequest www = UnityWebRequest.Get(Files.JsonURL + "/trade/accepted?id=" + PlayerManager.Instance.Account.Id);
 
+        Debug.Log(Files.JsonURL + "/trade/accepted?id=" + PlayerManager.Instance.Account.Id);
+
         yield return www.Send();
 
         if (www.isNetworkError)
         {
 #if UNITY_EDITOR
-            Debug.Log(www.error);           
+            Debug.Log(www.error);
 #endif
-            //Create messagebox with error
+            ShowError(www.error);
         }
         else
         {
@@ -452,6 +455,18 @@ public class TradeManager : MonoBehaviour
                 PlayerManager.Instance.Inventory.AddFlippo(requestedFlippo);
             }
             handler.GenerateGridButtons(trades, false);
+        }
+    }
+
+    public void ShowError(string error)
+    {
+        if (messageBox == null) messageBox = Instantiate(Resources.Load("Messages/MsgBox", typeof(GameObject))) as GameObject;
+        
+        if(messageBox != null)
+        {
+            MessageBox msg = messageBox.GetComponent<MessageBox>();
+            msg.SetText("Error:" + Environment.NewLine + error + Environment.NewLine + Environment.NewLine + "Make sure you are connected to the internet if you want to trade!");
+            messageBox.SetActive(true);
         }
     }
 

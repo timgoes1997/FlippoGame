@@ -64,7 +64,6 @@ public class GameManager : MonoBehaviour
             {
                 if (f.id == pf.flippoID) // && (filter == Collection.None || f.collection == filter)
                 {
-                    Debug.Log("Add");      
                     pFlippos.Add(f);
                     if (flippos.Count == pFlippos.Count)
                     {

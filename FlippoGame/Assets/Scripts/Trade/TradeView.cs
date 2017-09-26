@@ -11,6 +11,7 @@ public class TradeView : MonoBehaviour, ITradePanel
 
     public TradeItem item;
     public TradeManager manager;
+    public bool accepted;
 
     // Use this for initialization
     void Start()
