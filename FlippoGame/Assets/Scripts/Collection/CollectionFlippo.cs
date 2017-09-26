@@ -15,22 +15,26 @@ public class CollectionFlippo : MonoBehaviour, ICollectionFlippo
     private Flippo flippo;
 
     public int flippoAmount = 1;
-    public Text flippoText;   
+    public Text flippoText;
     public TradeManager tradeManager;
 
-	// Use this for initialization
-	void Start () {
+    public GameObject InspectionPanel;
+
+    // Use this for initialization
+    void Start()
+    {
         myIcon = gridButton.GetComponent<Image>();
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     public void SetFlippoItem(Flippo flippo, int flippoAmount = 1)
     {
-        if(myIcon == null)
+        if (myIcon == null)
         {
             myIcon = gridButton.GetComponent<Image>();
         }
@@ -43,10 +47,24 @@ public class CollectionFlippo : MonoBehaviour, ICollectionFlippo
     public void OnClick()
     {
 #if UNITY_EDITOR
-        if(flippo != null)
-            Debug.Log("Pressed flippo:" + flippo.id);      
+        if (flippo != null)
+            Debug.Log("Pressed flippo:" + flippo.id);
 #endif
-        if (tradeManager == null) return;
+        if (tradeManager == null)
+        {
+            if (InspectionPanel == null)
+            {
+                InspectionPanel =  Instantiate(Resources.Load("Messages/InspectionPanel", typeof(GameObject)), FindObjectOfType<Canvas>().transform, false) as GameObject;
+            }
+            
+            if(InspectionPanel != null)
+            {
+                InspectionPanel.SetActive(true);
+                InspectionPanel.GetComponent<IInspection>().Inspect(flippo);
+            }
+            return;
+        }
+
         if (flippo != null) tradeManager.SetTradeFlippo(flippo.id);
     }
 }
