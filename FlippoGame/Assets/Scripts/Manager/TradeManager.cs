@@ -128,7 +128,9 @@ public class TradeManager : MonoBehaviour
 
     IEnumerator TradeRequest(TradeItem item)
     {
+#if UNITY_EDITOR
         Debug.Log("Create trade");
+#endif
         WWWForm form = new WWWForm();
         form.AddField("accountId", item.Proposer.Account.Id);
         form.AddField("flippoId", item.Proposer.Item.id);
@@ -140,8 +142,10 @@ public class TradeManager : MonoBehaviour
 
         if (www.isNetworkError)
         {
+#if UNITY_EDITOR
             Debug.Log(www.error);
-            //failed message
+#endif
+            //Create messagebox with error
         }
         else
         {
@@ -202,7 +206,9 @@ public class TradeManager : MonoBehaviour
 
     IEnumerator GetPendingTradesEnumerator(int proposerId, TradeGridHandler handler)
     {
+#if UNITY_EDITOR
         Debug.Log("Proposed trade");
+#endif
 
         UnityWebRequest www = UnityWebRequest.Get(Files.JsonURL + "/trade/out?id=" + PlayerManager.Instance.Account.Id);
 
@@ -210,7 +216,10 @@ public class TradeManager : MonoBehaviour
 
         if (www.isNetworkError)
         {
+#if UNITY_EDITOR
             Debug.Log(www.error);
+#endif
+            //Create messagebox with error
         }
         else
         {
@@ -228,7 +237,6 @@ public class TradeManager : MonoBehaviour
                 int proposedFlippo = item["proposerFlippo"]["id"].Value<int>();
                 //int requesterAccount = item["reciever"]["id"].Value<int>();
                 int requestedFlippo = item["receiverFlippo"]["id"].Value<int>();
-                Debug.Log(tradeID + "-" + proposerAccount + "-" + proposedFlippo + "-" + "-" + requestedFlippo);
 
                 Trade proposer = new Trade(new Account(proposerAccount), GameManager.Instance.GetFlippoByID(proposedFlippo));
                 Trade requester = new Trade(new Account(-1), GameManager.Instance.GetFlippoByID(requestedFlippo));
@@ -248,7 +256,9 @@ public class TradeManager : MonoBehaviour
 
     IEnumerator GetTradeHistoryEnumerator(TradeGridHandler handler)
     {
+#if UNITY_EDITOR
         Debug.Log("Trade history");
+#endif
 
         UnityWebRequest www = UnityWebRequest.Get(Files.JsonURL + "/trade/history?id=" + PlayerManager.Instance.Account.Id);
 
@@ -256,7 +266,10 @@ public class TradeManager : MonoBehaviour
 
         if (www.isNetworkError)
         {
+#if UNITY_EDITOR
             Debug.Log(www.error);
+#endif
+            //Create messagebox with error
         }
         else
         {
@@ -278,7 +291,6 @@ public class TradeManager : MonoBehaviour
                 int proposedFlippo = item["proposerFlippo"]["id"].Value<int>();
                 //int requesterAccount = item["reciever"]["id"].Value<int>();
                 int requestedFlippo = item["receiverFlippo"]["id"].Value<int>();
-                Debug.Log(tradeID + "-" + proposerAccount + "-" + proposedFlippo + "-" + "-" + requestedFlippo);
 
                 Trade proposer = new Trade(new Account(proposerAccount), GameManager.Instance.GetFlippoByID(proposedFlippo));
                 Trade requester = new Trade(new Account(-1), GameManager.Instance.GetFlippoByID(requestedFlippo));
@@ -293,7 +305,6 @@ public class TradeManager : MonoBehaviour
                 int proposedFlippo = item["proposerFlippo"]["id"].Value<int>();
                 //int requesterAccount = item["reciever"]["id"].Value<int>();
                 int requestedFlippo = item["receiverFlippo"]["id"].Value<int>();
-                Debug.Log(tradeID + "-" + proposerAccount + "-" + proposedFlippo + "-" + "-" + requestedFlippo);
 
                 Trade proposer = new Trade(new Account(proposerAccount), GameManager.Instance.GetFlippoByID(proposedFlippo));
                 Trade requester = new Trade(new Account(-1), GameManager.Instance.GetFlippoByID(requestedFlippo));
@@ -314,7 +325,9 @@ public class TradeManager : MonoBehaviour
 
     IEnumerator GetRequestedTradesEnumerator(int proposerId, TradeGridHandler handler)
     {
+#if UNITY_EDITOR
         Debug.Log("Proposed trade");
+#endif
 
         UnityWebRequest www = UnityWebRequest.Get(Files.JsonURL + "/trade/in?id=" + PlayerManager.Instance.Account.Id);
 
@@ -322,7 +335,10 @@ public class TradeManager : MonoBehaviour
 
         if (www.isNetworkError)
         {
+#if UNITY_EDITOR
             Debug.Log(www.error);
+#endif
+            //Create messagebox with error
         }
         else
         {
@@ -340,7 +356,6 @@ public class TradeManager : MonoBehaviour
                 int proposedFlippo = item["proposerFlippo"]["id"].Value<int>();
                 //int requesterAccount = item["reciever"]["id"].Value<int>();
                 int requestedFlippo = item["receiverFlippo"]["id"].Value<int>();
-                Debug.Log(tradeID + "-" + proposerAccount + "-" + proposedFlippo + "-" + "-" + requestedFlippo);
 
                 Trade proposer = new Trade(new Account(proposerAccount), GameManager.Instance.GetFlippoByID(proposedFlippo));
                 Trade requester = new Trade(new Account(-1), GameManager.Instance.GetFlippoByID(requestedFlippo));
@@ -362,7 +377,9 @@ public class TradeManager : MonoBehaviour
 
     IEnumerator RespondToTradeCoroutine(TradeItem item, bool accepted)
     {
+#if UNITY_EDITOR
         Debug.Log("Respond to trade");
+#endif
         WWWForm form = new WWWForm();
         form.AddField("tradeId", item.ID);
         form.AddField("response", accepted ? 1 : 0);
@@ -373,7 +390,10 @@ public class TradeManager : MonoBehaviour
 
         if (www.isNetworkError)
         {
+#if UNITY_EDITOR
             Debug.Log(www.error);
+#endif
+            //Create messagebox with error
         }
         else
         {
@@ -394,14 +414,19 @@ public class TradeManager : MonoBehaviour
 
     IEnumerator AcceptedTradesEnumerator(TradeGridHandler handler)
     {
+#if UNITY_EDITOR
         Debug.Log("Accepted trades");
+#endif
         UnityWebRequest www = UnityWebRequest.Get(Files.JsonURL + "/trade/accepted?id=" + PlayerManager.Instance.Account.Id);
 
         yield return www.Send();
 
         if (www.isNetworkError)
         {
-            Debug.Log(www.error);
+#if UNITY_EDITOR
+            Debug.Log(www.error);           
+#endif
+            //Create messagebox with error
         }
         else
         {
@@ -419,7 +444,6 @@ public class TradeManager : MonoBehaviour
                 int proposedFlippo = item["tradeItem"]["proposerFlippo"]["id"].Value<int>();
                 int requestedFlippo = item["tradeItem"]["receiverFlippo"]["id"].Value<int>();
                 int requesterAccount = item["receiver"]["id"].Value<int>();
-                Debug.Log(tradeID + "-" + proposerAccount + "-" + proposedFlippo + "-" + requesterAccount + "-" + requestedFlippo);
 
                 Trade proposer = new Trade(new Account(proposerAccount), GameManager.Instance.GetFlippoByID(proposedFlippo));
                 Trade requester = new Trade(new Account(requesterAccount), GameManager.Instance.GetFlippoByID(requestedFlippo));
@@ -440,18 +464,24 @@ public class TradeManager : MonoBehaviour
 
         if (www.isNetworkError)
         {
+#if UNITY_EDITOR
             Debug.Log(www.error);
+#endif
         }
         else
         {
+#if UNITY_EDITOR
             Debug.Log(www.downloadHandler.text);
+#endif
         }
     }
 
 
     IEnumerator CreateAccount()
     {
+#if UNITY_EDITOR
         Debug.Log("Create account");
+#endif
         WWWForm form = new WWWForm();
         UnityWebRequest www = UnityWebRequest.Post(Files.JsonURL + "/account/create", form);
 
@@ -459,15 +489,18 @@ public class TradeManager : MonoBehaviour
 
         if (www.isNetworkError)
         {
+#if UNITY_EDITOR
             Debug.Log(www.error);
+#endif
         }
         else
         {
             string json = www.downloadHandler.text;
+#if UNITY_EDITOR
             Debug.Log(json);
+#endif
             var jo = JObject.Parse(json);
             int id = jo["id"].Value<int>();
-            Debug.Log(id);
             StartCoroutine(CreateTrades(id, id + 1));
         }
     }
@@ -487,25 +520,33 @@ public class TradeManager : MonoBehaviour
 
         if (www.isNetworkError)
         {
+#if UNITY_EDITOR
             Debug.Log(www.error);
+#endif
         }
         else
         {
+#if UNITY_EDITOR
             Debug.Log(www.downloadHandler.text);
+#endif
             StartCoroutine(GetProposedTrades(proposer, receiver));
         }
     }
 
     IEnumerator GetProposedTrades(int proposer, int receiver)
     {
+#if UNITY_EDITOR
         Debug.Log("Proposed trade");
+#endif
         UnityWebRequest www = UnityWebRequest.Get(Files.JsonURL + "/trade/out?id=" + proposer);
 
         yield return www.Send();
 
         if (www.isNetworkError)
         {
+#if UNITY_EDITOR
             Debug.Log(www.error);
+#endif
         }
         else
         {
@@ -516,24 +557,29 @@ public class TradeManager : MonoBehaviour
 
     IEnumerator GetTradeRequests(int proposer, int receiver)
     {
+#if UNITY_EDITOR
         Debug.Log("Trade requests");
+#endif
         UnityWebRequest www = UnityWebRequest.Get(Files.JsonURL + "/trade/in?id=" + receiver);
 
         yield return www.Send();
 
         if (www.isNetworkError)
         {
+#if UNITY_EDITOR
             Debug.Log(www.error);
+#endif
         }
         else
         {
             string json = www.downloadHandler.text;
+#if UNITY_EDITOR
             Debug.Log(json);
+#endif
             var jo = JArray.Parse(json);
             if (jo.Count > 0)
             {
                 int id = jo[0]["id"].Value<int>();
-                Debug.Log("Trade: " + id);
                 StartCoroutine(RespondToTrade(id, proposer, receiver));
             }
         }
@@ -542,7 +588,9 @@ public class TradeManager : MonoBehaviour
 
     IEnumerator RespondToTrade(int tradeID, int proposer, int receiver)
     {
+#if UNITY_EDITOR
         Debug.Log("Respond to trade");
+#endif
         WWWForm form = new WWWForm();
         form.AddField("tradeId", tradeID);
         form.AddField("response", 1);
@@ -553,30 +601,40 @@ public class TradeManager : MonoBehaviour
 
         if (www.isNetworkError)
         {
+#if UNITY_EDITOR
             Debug.Log(www.error);
+#endif
         }
         else
         {
+#if UNITY_EDITOR
             Debug.Log(www.downloadHandler.text);
+#endif
             StartCoroutine(AcceptTrade(tradeID, proposer, receiver));
         }
     }
 
     IEnumerator AcceptTrade(int tradeID, int proposer, int receiver)
     {
+#if UNITY_EDITOR
         Debug.Log("Accept trade - proposer: " + proposer + " - receiver: " + receiver);
+#endif
         UnityWebRequest www = UnityWebRequest.Get(Files.JsonURL + "/trade/accepted?id=" + proposer);
 
         yield return www.Send();
 
         if (www.isNetworkError)
         {
+#if UNITY_EDITOR
             Debug.Log(www.error);
+#endif
         }
         else
         {
             string json = www.downloadHandler.text;
+#if UNITY_EDITOR
             Debug.Log(json);
+#endif
         }
     }
     #endregion
