@@ -5,52 +5,93 @@ using UnityEngine;
 public class TradeItem
 {
     private int tradeId;
-    private Flippo proposed;
-    private Flippo requested;
-    private Account other;
-    private Account yours;
+    private Trade requester;
+    private Trade proposer;
+    private bool accepted;
 
     public int ID { get { return tradeId; } }
-    public Flippo Proposed { get { return proposed; } }
-    public Flippo Requested { get { return requested; } }   
-    public Account Other { get { return other; } }
-    public Account Your { get { return yours; } }
+    public Trade Requester { get { return requester; } }
+    public Trade Proposer { get { return proposer; } }
+    public Flippo ProposedFlippo { get { return proposer.Item; } }
+    public Flippo RequestedFlippo { get { return requester.Item; } }   
+    public Account RequesterAccount { get { return proposer.Account; } }
+    public Account ProposerAccount { get { return proposer.Account; } }
+    public bool Accepted { get { return accepted; } }
 
-    public TradeItem(int tradeId, Flippo proposed, Flippo requested, Account other, Account yours)
+    public TradeItem(Trade requester, Trade proposer)
     {
-        this.tradeId = tradeId;
-        this.proposed = proposed;
-        this.requested = requested;
-        this.other = other;
-        this.yours = yours;
+        this.requester = requester;
+        this.proposer = proposer;    
     }
 
-    public TradeItem(Flippo proposed, Flippo requested, Account other, Account yours)
+    public TradeItem(int tradeId, Trade requester, Trade proposer)
     {
-        this.proposed = proposed;
-        this.requested = requested;
-        this.other = other;
-        this.yours = yours;
+        this.requester = requester;
+        this.proposer = proposer;
+    }
+
+    public TradeItem(int tradeId, Trade requester, Trade proposer, bool accepted = false)
+    {
+        this.requester = requester;
+        this.proposer = proposer;
+        this.accepted = accepted;
+    }
+
+    public TradeItem(int tradeId, Flippo proposedFlippo, Flippo requestedFlippo, Account proposer, Account requester)
+    {
+        this.tradeId = tradeId;
+        this.requester = new Trade(requester, requestedFlippo);
+        this.proposer = new Trade(proposer, proposedFlippo);
+    }
+
+    public TradeItem(int tradeId, Flippo proposedFlippo, Flippo requestedFlippo, Account proposer, Account requester, bool accepted = false)
+    {
+        this.tradeId = tradeId;
+        this.requester = new Trade(requester, requestedFlippo);
+        this.proposer = new Trade(proposer, proposedFlippo);
+        this.accepted = accepted;
+    }
+
+    public TradeItem(Flippo proposedFlippo, Flippo requestedFlippo, Account proposer, Account requester)
+    {
+        this.requester = new Trade(requester, requestedFlippo);
+        this.proposer = new Trade(proposer, proposedFlippo);
     }
 
     public TradeItem()
     {
-        
+        requester = new Trade();
+        proposer = new Trade();
+
     }
 
-    public void SetProposedFlippo(Flippo proposed)
+    public void SetRequesterAccount(Account a)
     {
-        this.proposed = proposed;
+        requester.SetAccount(a);
     }
 
-    public void SetRequestedFlippo(Flippo requested)
+    public void SetProposerAccount(Account a)
     {
-        this.requested = requested;
+        proposer.SetAccount(a);
     }
 
-    public void SetAccounts(Account yours, Account other)
+    public void SetRequestedFlippo(Flippo f)
     {
-        this.yours = yours;
-        this.other = other;
+        requester.SetTradeItem(f);
+    }
+
+    public void SetProposedFlippo(Flippo f)
+    {
+        proposer.SetTradeItem(f);
+    }
+
+    public void SetProposer(Trade proposer)
+    {
+        this.proposer = proposer;
+    }
+
+    public void SetRequester(Trade requester)
+    {
+        this.requester = requester;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TradeGridHandler : MonoBehaviour {
 
@@ -8,6 +9,7 @@ public class TradeGridHandler : MonoBehaviour {
 
     public GameObject tradeView;
     public GameObject tradeRequestView;
+    public GridLayoutGroup grid;
 
     [SerializeField]
     private GameObject tradePanelObject;
@@ -30,12 +32,12 @@ public class TradeGridHandler : MonoBehaviour {
 
     public void GenerateGridButtons(List<TradeItem> tradeItems, bool request = false)
     {
-        Debug.Log(tradeItems.Count);
         if (tradeView == null) return;
         if (tradeRequestView == null) return;
         if (currentChildren == null) currentChildren = new List<GameObject>();
+        if (grid != null) grid.cellSize = request ? new Vector2(1000, 400) : new Vector2(1000, 300);
 
-        for(int i = currentChildren.Count - 1; i >= 0; i--)
+        for (int i = currentChildren.Count - 1; i >= 0; i--)
         {
             Destroy(currentChildren[i]);
             currentChildren.Remove(currentChildren[i]);
