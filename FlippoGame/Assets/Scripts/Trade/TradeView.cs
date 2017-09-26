@@ -7,7 +7,12 @@ public class TradeView : MonoBehaviour, ITradePanel
 {
     public Image proposedImage;
     public Image requestedImage;
-    public Text otherTraderText;
+    public Image statusImage;
+    public Sprite acceptedSprite;
+    public Sprite pendingSprite;
+    
+    public Text proposedFlippoText;
+    public Text requestedFlippoText;
 
     public TradeItem item;
     public TradeManager manager;
@@ -48,15 +53,14 @@ public class TradeView : MonoBehaviour, ITradePanel
         {
             isProposer = item.Proposer.Account.Id == PlayerManager.Instance.Account.Id;
         }
-        else
-        {
-            if (otherTraderText != null)
-                otherTraderText.text = "Trader: Unkown";
-        }     
 
+        if (item.ProposedFlippo == null && item.RequestedFlippo == null) return;
+        if (proposedFlippoText != null) proposedFlippoText.text = (isProposer) ? "#" + item.Proposer.Item.id.ToString() : "#" + item.Requester.Item.id.ToString();
         if (proposedImage != null) proposedImage.sprite = (isProposer) ? item.Proposer.Item.sprite : item.Requester.Item.sprite;
+        if (requestedFlippoText != null) requestedFlippoText.text = (isProposer) ? "#" + item.Requester.Item.id.ToString() : "#" + item.Proposer.Item.id.ToString();
         if (requestedImage != null) requestedImage.sprite = (isProposer) ? item.Requester.Item.sprite : item.Proposer.Item.sprite;
-        if (otherTraderText != null) otherTraderText.text = (isProposer) ? "Trader: " + item.Proposer.Account.ToString() : "Trader: " + item.Requester.Account.Id.ToString();
+        if (statusImage != null && acceptedSprite != null && pendingSprite != null) statusImage.sprite = (item.Accepted) ? acceptedSprite : pendingSprite;
+        //if (otherTraderText != null) otherTraderText.text = (isProposer) ? "Trader: " + item.Proposer.Account.ToString() : "Trader: " + item.Requester.Account.Id.ToString();
     }
 
     public void AcceptTrade()
