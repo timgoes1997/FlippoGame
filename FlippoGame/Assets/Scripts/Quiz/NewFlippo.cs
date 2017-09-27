@@ -7,17 +7,16 @@ public class NewFlippo : MonoBehaviour {
     public bool getNewQuestion;
 	// Use this for initialization
 	void Start () {
-        getNewQuestion = true;
-
     }
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
-    
-    public void StartAnimation()
+
+    public void StartAnimation(bool lastFlippo)
     {   
+        getNewQuestion = lastFlippo;
         GetComponent<Animation>().Play();
     }
 

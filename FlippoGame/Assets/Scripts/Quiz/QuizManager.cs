@@ -99,26 +99,39 @@ public class QuizManager : MonoBehaviour {
         return true;
     }
 
+    IEnumerator GetExtraFlippo(float sec)
+    {
+        yield return new WaitForSeconds(sec);
+        int newflippoIndex2 = Random.Range(1, GameManager.Instance.AmountOfFlippos + 1);
+        PlayerManager.Instance.Inventory.AddFlippo(newflippoIndex2);
+        Flippo f2 = GameManager.Instance.GetFlippoByID(newflippoIndex2);
+        GameObject flippo2 = Instantiate(Resources.Load("newFlippo"), canvas.transform, false) as GameObject;
+        flippo2.GetComponent<Image>().sprite = f2.sprite;
+        flippo2.GetComponent<NewFlippo>().StartAnimation(true);
+
+    }
+
     public void GetRandomFlippos()
     {
+        int randomNr = Random.Range(0, 4);
         int newflippoIndex1 = Random.Range(1, GameManager.Instance.AmountOfFlippos + 1);
         PlayerManager.Instance.Inventory.AddFlippo(newflippoIndex1);
         Flippo f1 = GameManager.Instance.GetFlippoByID(newflippoIndex1);
         GameObject flippo1 = Instantiate(Resources.Load("newFlippo"), canvas.transform, false) as GameObject;
         flippo1.GetComponent<Image>().sprite = f1.sprite;
-        flippo1.GetComponent<NewFlippo>().StartAnimation();
-
-        if (Random.Range(0, 4) == 3)
+        if (randomNr == 3)
         {
-            Debug.Log("EXTRA FLIPPO");
-            int newflippoIndex2 = Random.Range(1, GameManager.Instance.AmountOfFlippos + 1);
-            PlayerManager.Instance.Inventory.AddFlippo(newflippoIndex2);
-            Flippo f2 = GameManager.Instance.GetFlippoByID(newflippoIndex2);
-            GameObject flippo2 = Instantiate(Resources.Load("newFlippo"), canvas.transform, false) as GameObject;
-            flippo2.GetComponent<Image>().sprite = f2.sprite;
-            flippo2.GetComponent<NewFlippo>().getNewQuestion = false;
-            flippo2.GetComponent<NewFlippo>().StartAnimation();
+            flippo1.GetComponent<NewFlippo>().StartAnimation(false);
+        }
+        else
+        {
+            flippo1.GetComponent<NewFlippo>().StartAnimation(true);
+        }
+            
 
+        if (randomNr == 3)
+        {
+            StartCoroutine(GetExtraFlippo(1.5f));
         }  
     }
     void MakeQuiz()
@@ -146,7 +159,7 @@ public class QuizManager : MonoBehaviour {
         quizQuestions[2].answerCText = "Diglett";
         quizQuestions[2].answer = Answer.B;
         quizQuestions[2].imageName = "imgPikachu";
-        quizQuestions[3].questionText = "Aan welke rapper denk je bij dit plaatje?";
+        quizQuestions[3].questionText = "Welke rapper past bij dit plaatje?";
         quizQuestions[3].answerAText = "50 cent";
         quizQuestions[3].answerBText = "Eminem";
         quizQuestions[3].answerCText = "Lil Kleine";
