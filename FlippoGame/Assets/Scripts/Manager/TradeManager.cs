@@ -12,7 +12,6 @@ public class TradeManager : MonoBehaviour
     private Sprite defaultSpriteRequest;
 
     public GameObject historyTradeMenu;
-    public GameObject tradeMenu;
     public GameObject flippoCollectionMenu;
 
     public GameObject proposedFlippoImage;
@@ -40,22 +39,13 @@ public class TradeManager : MonoBehaviour
     public void ActivateHistoryTradeMenu()
     {
         historyTradeMenu.SetActive(true);
-        tradeMenu.SetActive(false);
         flippoCollectionMenu.SetActive(false);
         GetAcceptedTrades(handler);
-    }
-
-    public void ActivateTradeMenu()
-    {
-        historyTradeMenu.SetActive(false);
-        flippoCollectionMenu.SetActive(false);
-        tradeMenu.SetActive(true);
     }
 
     public void LoadRequestFlippoCollection()
     {
         historyTradeMenu.SetActive(false);
-        tradeMenu.SetActive(false);
         flippoCollectionMenu.GetComponent<IGrid>().SetGrid(true);
         flippoCollectionMenu.SetActive(true);
         proposedFlippo = false;
@@ -64,7 +54,6 @@ public class TradeManager : MonoBehaviour
     public void LoadProposedFlippoCollection()
     {
         historyTradeMenu.SetActive(false);
-        tradeMenu.SetActive(false);
         flippoCollectionMenu.GetComponent<IGrid>().SetGrid(false);
         flippoCollectionMenu.SetActive(true);
         proposedFlippo = true;
@@ -145,7 +134,7 @@ public class TradeManager : MonoBehaviour
             currentTrade.SetProposedFlippo(f);
             if (requestedFlippoImage != null) requestedFlippoImage.GetComponent<Image>().sprite = f.sprite;
         }
-        ActivateTradeMenu();
+        ActivateHistoryTradeMenu();
     }
 
 

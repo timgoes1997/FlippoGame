@@ -15,6 +15,7 @@ public class CollectionFlippo : MonoBehaviour, ICollectionFlippo
     private Flippo flippo;
 
     public int flippoAmount = 1;
+    public bool ShowFlippoID = false;
     public Text flippoText;
     public TradeManager tradeManager;
 
@@ -39,18 +40,18 @@ public class CollectionFlippo : MonoBehaviour, ICollectionFlippo
             myIcon = gridButton.GetComponent<Image>();
         }
 
-        flippoText.text = flippoAmount.ToString();
+        flippoText.text = (ShowFlippoID) ? "#" + flippo.id.ToString() : flippoAmount.ToString();
         myIcon.sprite = flippo.sprite;
         this.flippo = flippo;
     }
 
-    public void OnClick()
+    public void OnClick(bool trade = true)
     {
 #if UNITY_EDITOR
         if (flippo != null)
             Debug.Log("Pressed flippo:" + flippo.id);
 #endif
-        if (tradeManager == null)
+        if (trade == false || tradeManager == null)
         {
             if (InspectionPanel == null)
             {
@@ -60,7 +61,7 @@ public class CollectionFlippo : MonoBehaviour, ICollectionFlippo
             if(InspectionPanel != null)
             {
                 InspectionPanel.SetActive(true);
-                InspectionPanel.GetComponent<IInspection>().Inspect(flippo);
+                InspectionPanel.GetComponent<IFlippoInspection>().Inspect(flippo);
             }
             return;
         }

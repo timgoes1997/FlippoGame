@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FlippoInspection : MonoBehaviour, IInspection
+public class FlippoInspection : MonoBehaviour, IFlippoInspection
 {
     public Image flippoSprite;
 

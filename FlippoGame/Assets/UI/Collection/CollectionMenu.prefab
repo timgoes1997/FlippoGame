@@ -137,7 +137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1913016455239342
 GameObject:
   m_ObjectHideFlags: 1
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.9632353, b: 0.92337716, a: 0.659}
+  m_Color: {r: 0.007843138, g: 0.7176471, b: 0.78039217, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -383,7 +383,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   filter: 0
+  inventory: 1
   gridButtonTemplate: {fileID: 1469923744081330}
+  currentChildren: []
 --- !u!114 &114703465038548690
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -399,6 +401,8 @@ MonoBehaviour:
   gridButton: {fileID: 1469923744081330}
   flippoAmount: 1
   flippoText: {fileID: 114140839066933926}
+  tradeManager: {fileID: 0}
+  InspectionPanel: {fileID: 0}
 --- !u!114 &114703786124091930
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -467,14 +471,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 114703465038548690}
         m_MethodName: OnClick
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -612,7 +616,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: -5, y: 0}
-  m_SizeDelta: {x: 50, y: 1220}
+  m_SizeDelta: {x: 50, y: 1770}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!224 &224226992947887254
 RectTransform:
@@ -628,7 +632,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -668,7 +672,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 975, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224373864818043232
 RectTransform:
@@ -687,7 +691,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 20, y: 0}
-  m_SizeDelta: {x: 1000, y: 1210}
+  m_SizeDelta: {x: 1000, y: 1770}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224603857088669692
 RectTransform:
@@ -726,7 +730,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1080, y: 1220}
+  m_SizeDelta: {x: 1080, y: 1770}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!224 &224934896516887732
 RectTransform:
