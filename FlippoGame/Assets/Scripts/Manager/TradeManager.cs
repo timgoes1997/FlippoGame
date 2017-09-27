@@ -21,6 +21,7 @@ public class TradeManager : MonoBehaviour
 
     private bool proposedFlippo = false;
     private TradeItem currentTrade;
+    public TradeItem CurrentTrade { get { return currentTrade; } }
 
     private void Awake()
     {
@@ -63,6 +64,11 @@ public class TradeManager : MonoBehaviour
     {
         if (currentTrade != null && currentTrade.ProposedFlippo != null && currentTrade.RequestedFlippo != null)
         {
+            if(currentTrade.ProposedFlippo.id == currentTrade.RequestedFlippo.id)
+            {
+                ShowMessage("Je kan niet dezelfde flippo's ruilen!");
+                return;
+            }
             currentTrade.SetProposerAccount(PlayerManager.Instance.Account);
             StartCoroutine(TradeRequest(currentTrade));
         }
@@ -269,6 +275,18 @@ public class TradeManager : MonoBehaviour
         {
             MessageBox msg = messageBox.GetComponent<MessageBox>();
             msg.SetText("Error:" + Environment.NewLine + error + Environment.NewLine + Environment.NewLine + "Make sure you are connected to the internet if you want to trade!");
+            messageBox.SetActive(true);
+        }
+    }
+
+    public void ShowMessage(string message)
+    {
+        if (messageBox == null) messageBox = Instantiate(Resources.Load("Messages/MsgBox", typeof(GameObject)), FindObjectOfType<Canvas>().transform, false) as GameObject;
+
+        if (messageBox != null)
+        {
+            MessageBox msg = messageBox.GetComponent<MessageBox>();
+            msg.SetText(message);
             messageBox.SetActive(true);
         }
     }
