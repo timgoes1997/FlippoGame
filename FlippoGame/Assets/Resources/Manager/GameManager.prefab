@@ -54,161 +54,305 @@ MonoBehaviour:
   flippos:
   - id: 1
     sprite: {fileID: 21300000, guid: 564d7f57053f8dd4f9f4ad10096aeb54, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 2
     sprite: {fileID: 21300000, guid: 0093d6ec2816fec499d9fed6afad44c8, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 3
     sprite: {fileID: 21300000, guid: 9f0a795751f8a3747a70de4c87835509, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 4
     sprite: {fileID: 21300000, guid: cd963c8d9e8b64742b9b979a77e665fe, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 5
     sprite: {fileID: 21300000, guid: 2169a2c0ee3bcb34d8d8cdbc133b86d4, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 6
     sprite: {fileID: 21300000, guid: 108e18dff26d77a4dac33b263aedee47, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 7
     sprite: {fileID: 21300000, guid: e01cbb963ba242e448ad493c2ddc62cc, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 8
     sprite: {fileID: 21300000, guid: 1cbcb51c71454df4bbbc928066facc79, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 9
     sprite: {fileID: 21300000, guid: 05e028c7debfa5544b34fcb0fc606234, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 10
     sprite: {fileID: 21300000, guid: 4a846626848587445835050c5f36b01e, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 11
     sprite: {fileID: 21300000, guid: 705372ad55e5422428db73e79dd2b259, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 12
     sprite: {fileID: 21300000, guid: f74aca501521f3744bdfd8db50e7d802, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 13
     sprite: {fileID: 21300000, guid: efacfa8b8de9e9440aa4180aa67997d4, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 14
     sprite: {fileID: 21300000, guid: e74a4f541efcbbc4689630429a95bb28, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 15
     sprite: {fileID: 21300000, guid: 94845271fa5b35545b074f6d0f3c82cb, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 16
     sprite: {fileID: 21300000, guid: ccc60385c61be36438f4e35b66b4043c, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 17
     sprite: {fileID: 21300000, guid: 42bc1ac928a2b164ea40ba79da761d17, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 18
     sprite: {fileID: 21300000, guid: 62ff6b6d29a21fd44b5a4b8e3928f974, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 19
     sprite: {fileID: 21300000, guid: e312e81bf8cbd14448d6645c0e93619c, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 20
     sprite: {fileID: 21300000, guid: d31b8e66e0588f9479047c7d972aa180, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 21
     sprite: {fileID: 21300000, guid: 6426f9aa3a5d9734d91ee5bb7d9c5a0b, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 22
     sprite: {fileID: 21300000, guid: 9b04004212b38c141b9ce8ac70995a35, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 23
     sprite: {fileID: 21300000, guid: 96258ffd15a7c2b4d85c8088d9902b5d, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 24
     sprite: {fileID: 21300000, guid: ecfdf6d3a49372d44ad9f1f4cffe995e, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 25
     sprite: {fileID: 21300000, guid: 2378a35cd0474c04abf5fbef1d3693c9, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 26
     sprite: {fileID: 21300000, guid: 241b569d81500be4e9d492ae9dfff941, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 27
     sprite: {fileID: 21300000, guid: 516909b9ac208ad4ba873dd954c3d3ad, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 28
     sprite: {fileID: 21300000, guid: bbbd24ff26e947640a807a023a4973f2, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 29
     sprite: {fileID: 21300000, guid: fdd85a00e4d51dd4cae4d807f2e3c801, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 30
     sprite: {fileID: 21300000, guid: cef37d6b49f882b4c82e2420d677731f, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 31
     sprite: {fileID: 21300000, guid: f80173b4889268f468a107df83dabf73, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 32
     sprite: {fileID: 21300000, guid: 2a0144fe19b8d5842803994638661cb9, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 33
     sprite: {fileID: 21300000, guid: 8fc2c0c13274c0a43939a64a2c0d7327, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 34
     sprite: {fileID: 21300000, guid: 6444a03ba8951da40b2a9703dc49ccd2, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 35
     sprite: {fileID: 21300000, guid: 8d633fb262b3a30439f72b89abe53aae, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 36
     sprite: {fileID: 21300000, guid: 29da0ace8b6798c4d934c924fb8a55e9, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 37
     sprite: {fileID: 21300000, guid: c05d98fe9c27bee4cb35b41b44634733, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 38
     sprite: {fileID: 21300000, guid: 44576297c9620f647a8990afa96a9f62, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 39
     sprite: {fileID: 21300000, guid: fb4e6aee4f59a014083b889d2ab8bc5f, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
   - id: 40
     sprite: {fileID: 21300000, guid: 58d077084eaaaa4408d0e5f2395286ac, type: 3}
-    collection: 0
+    collection: 1
     rarity: 0
+  - id: 41
+    sprite: {fileID: 21300000, guid: 9d2e3ad186553474687333194aa775ff, type: 3}
+    collection: 1
+    rarity: 1
+  - id: 42
+    sprite: {fileID: 21300000, guid: ff3ff099a8c0b7c46b5eef6cccd10587, type: 3}
+    collection: 1
+    rarity: 1
+  - id: 43
+    sprite: {fileID: 21300000, guid: 8e379597651a2d44eb48886850d0dd8d, type: 3}
+    collection: 1
+    rarity: 1
+  - id: 44
+    sprite: {fileID: 21300000, guid: 9aad910219270c7418ddda22f7c70e3c, type: 3}
+    collection: 1
+    rarity: 1
+  - id: 45
+    sprite: {fileID: 21300000, guid: 2f2ee1d7453d38c4eb1b2ca792700d41, type: 3}
+    collection: 1
+    rarity: 1
+  - id: 46
+    sprite: {fileID: 21300000, guid: 24b6dfeb92399314ca6f1523c3007d94, type: 3}
+    collection: 1
+    rarity: 1
+  - id: 47
+    sprite: {fileID: 21300000, guid: fd51438fc73f8254bb2e3e59cb8dd367, type: 3}
+    collection: 1
+    rarity: 1
+  - id: 48
+    sprite: {fileID: 21300000, guid: b38636b722f0b064395543173788b5c4, type: 3}
+    collection: 1
+    rarity: 1
+  - id: 49
+    sprite: {fileID: 21300000, guid: 9562770362faa84458f2efb82e6e2925, type: 3}
+    collection: 1
+    rarity: 1
+  - id: 50
+    sprite: {fileID: 21300000, guid: d287f3d3e280cc54aae0512a5d510219, type: 3}
+    collection: 1
+    rarity: 1
+  - id: 51
+    sprite: {fileID: 21300000, guid: c11fb4c2c66607646a591847fbaff728, type: 3}
+    collection: 1
+    rarity: 1
+  - id: 52
+    sprite: {fileID: 21300000, guid: 820b67f992081aa498fc58a5c7e74aff, type: 3}
+    collection: 1
+    rarity: 1
+  - id: 53
+    sprite: {fileID: 21300000, guid: 35a1d1a2e30a6ab4eb50def3152cd16a, type: 3}
+    collection: 1
+    rarity: 1
+  - id: 54
+    sprite: {fileID: 21300000, guid: 443929e9362e1784fa999688ada4e53f, type: 3}
+    collection: 1
+    rarity: 1
+  - id: 55
+    sprite: {fileID: 21300000, guid: ef5eee7816b54e64d8b09bf89ad31caa, type: 3}
+    collection: 1
+    rarity: 1
+  - id: 56
+    sprite: {fileID: 21300000, guid: 84e6c144b12a98540a9020b8cab6600f, type: 3}
+    collection: 1
+    rarity: 1
+  - id: 57
+    sprite: {fileID: 21300000, guid: 94dc3e89a72cd6a41ab12aa5a47166cc, type: 3}
+    collection: 1
+    rarity: 1
+  - id: 58
+    sprite: {fileID: 21300000, guid: d4a7d701f93e8764a8e7c9c86d49ff21, type: 3}
+    collection: 1
+    rarity: 1
+  - id: 59
+    sprite: {fileID: 21300000, guid: 0da01668cd39fb448ab1009cecbc51e4, type: 3}
+    collection: 1
+    rarity: 1
+  - id: 60
+    sprite: {fileID: 21300000, guid: dd4f19160736d504eaf1114d600682ec, type: 3}
+    collection: 1
+    rarity: 1
+  - id: 61
+    sprite: {fileID: 21300000, guid: 3ec3752f417ee2c4abe60ab45ffc9bb9, type: 3}
+    collection: 1
+    rarity: 2
+  - id: 62
+    sprite: {fileID: 21300000, guid: 869c7b060c3136e4388da7ca3031b0e1, type: 3}
+    collection: 1
+    rarity: 2
+  - id: 63
+    sprite: {fileID: 21300000, guid: 2cfee4114cef666409b8d00a14590d8b, type: 3}
+    collection: 1
+    rarity: 2
+  - id: 64
+    sprite: {fileID: 21300000, guid: 88fba3fe3e8c7534d8b7dc715cadc250, type: 3}
+    collection: 1
+    rarity: 2
+  - id: 65
+    sprite: {fileID: 21300000, guid: d86abdb9077ddd14d8cd48700b35bde0, type: 3}
+    collection: 1
+    rarity: 2
+  - id: 66
+    sprite: {fileID: 21300000, guid: d8f2f3d1facd967489718a881ba34996, type: 3}
+    collection: 1
+    rarity: 2
+  - id: 67
+    sprite: {fileID: 21300000, guid: 83a19891919893846908408b077576cd, type: 3}
+    collection: 1
+    rarity: 2
+  - id: 68
+    sprite: {fileID: 21300000, guid: 4b0478c330b551443bdd33a0e9c1214a, type: 3}
+    collection: 1
+    rarity: 2
+  - id: 69
+    sprite: {fileID: 21300000, guid: ec8a6f3fca364dd43b2a628fc3a9a5b2, type: 3}
+    collection: 1
+    rarity: 2
+  - id: 70
+    sprite: {fileID: 21300000, guid: db2e65cf67e1e9c418707a50cc4b86db, type: 3}
+    collection: 1
+    rarity: 2
+  - id: 71
+    sprite: {fileID: 21300000, guid: bfd4d5011e605a241b95052c21df8191, type: 3}
+    collection: 1
+    rarity: 3
+  - id: 72
+    sprite: {fileID: 21300000, guid: ae8176103a63e3042bd33ce7dbf9521a, type: 3}
+    collection: 1
+    rarity: 3
+  - id: 73
+    sprite: {fileID: 21300000, guid: e16ae280546cf0546b120f663913b569, type: 3}
+    collection: 1
+    rarity: 3
+  - id: 74
+    sprite: {fileID: 21300000, guid: ecbc18ad8258ef5469192e87a0178295, type: 3}
+    collection: 1
+    rarity: 3
+  - id: 75
+    sprite: {fileID: 21300000, guid: 308a3071ab571494faa9a6b7a4983432, type: 3}
+    collection: 1
+    rarity: 3
+  CommonChance: 75
+  UnCommonChance: 15
+  RareChance: 7
+  legendaryChance: 3

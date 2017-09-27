@@ -55,10 +55,10 @@ public class CollectionFlippo : MonoBehaviour, ICollectionFlippo
         {
             if (InspectionPanel == null)
             {
-                InspectionPanel =  Instantiate(Resources.Load("Messages/InspectionPanel", typeof(GameObject)), FindObjectOfType<Canvas>().transform, false) as GameObject;
+                InspectionPanel = Instantiate(Resources.Load("Messages/InspectionPanel", typeof(GameObject)), FindObjectOfType<Canvas>().transform, false) as GameObject;
             }
-            
-            if(InspectionPanel != null)
+
+            if (InspectionPanel != null)
             {
                 InspectionPanel.SetActive(true);
                 InspectionPanel.GetComponent<IFlippoInspection>().Inspect(flippo);
@@ -66,6 +66,22 @@ public class CollectionFlippo : MonoBehaviour, ICollectionFlippo
             return;
         }
 
-        if (flippo != null) tradeManager.SetTradeFlippo(flippo.id);
+        if (flippo != null)
+        {
+            if (tradeManager.CurrentTrade != null)
+            {
+                if (tradeManager.CurrentTrade.ProposedFlippo != null && tradeManager.CurrentTrade.ProposedFlippo.id == flippo.id)
+                {
+                    tradeManager.ShowMessage("Je kan niet dezelfde flippo's ruilen!");
+                    return;
+                }
+                else if (tradeManager.CurrentTrade.RequestedFlippo != null && tradeManager.CurrentTrade.RequestedFlippo.id == flippo.id)
+                {
+                    tradeManager.ShowMessage("Je kan niet dezelfde flippo's ruilen!");
+                    return;
+                }
+            }
+            tradeManager.SetTradeFlippo(flippo.id);
+        }
     }
 }

@@ -22,6 +22,11 @@ public class GameManager : MonoBehaviour
     private List<Flippo> flippos;
     public int AmountOfFlippos { get { return flippos.Count; } }
 
+    public int CommonChance = 75;
+    public int UnCommonChance = 15;
+    public int RareChance = 7;
+    public int legendaryChance = 3;
+
     public List<Flippo> Flippos { get { return flippos; } }
 
     void Awake()
@@ -78,6 +83,35 @@ public class GameManager : MonoBehaviour
         }
 
         return pFlippos;
+    }
+
+    public Flippo GetRandomFlippo()
+    {
+        int total = CommonChance + UnCommonChance + RareChance + legendaryChance;
+        int randomChance = Random.Range(0, total);
+        if (randomChance <= CommonChance) return GetRandomFlippoByRarity(Rarity.Common);
+        if (randomChance <= CommonChance + UnCommonChance) return GetRandomFlippoByRarity(Rarity.UnCommon);
+        if (randomChance <= CommonChance + UnCommonChance + RareChance) return GetRandomFlippoByRarity(Rarity.Rare);
+        return GetRandomFlippoByRarity(Rarity.Legendary);
+    }
+
+    public Flippo GetRandomFlippoByRarity(Rarity rarity)
+    {
+        List<Flippo> rarityFlippos = GetFlipposByRarity(rarity);
+        return rarityFlippos[Random.Range(0, rarityFlippos.Count)];
+    }
+
+    public List<Flippo> GetFlipposByRarity(Rarity rarity)
+    {
+        List<Flippo> rarityFlippos = new List<Flippo>();
+        foreach (Flippo f in flippos)
+        {
+            if (f.rarity == rarity)
+            {
+                rarityFlippos.Add(f);
+            }
+        }
+        return rarityFlippos;
     }
 
     public static void LoadSceneWithName(string sceneName)
