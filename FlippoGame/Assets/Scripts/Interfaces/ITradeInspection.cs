@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IInspection {
-    void Inspect(Flippo f);
+public interface ITradeInspection {
     void Continue();
+    void Inspect(TradeItem item);
 }

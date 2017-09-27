@@ -10,13 +10,15 @@ public class TradeView : MonoBehaviour, ITradePanel
     public Image statusImage;
     public Sprite acceptedSprite;
     public Sprite pendingSprite;
-    
+
     public Text proposedFlippoText;
     public Text requestedFlippoText;
 
     public TradeItem item;
     public TradeManager manager;
     public bool accepted;
+
+    public GameObject inspectionPanel;
 
     // Use this for initialization
     void Start()
@@ -73,5 +75,28 @@ public class TradeView : MonoBehaviour, ITradePanel
     {
         if (manager == null) return;
         manager.RespondToTrade(item, false);
+    }
+
+    public void OnClick()
+    {
+        if (item == null)
+        {
+            return;
+        }
+
+
+#if UNITY_EDITOR
+        Debug.Log("Pressed item:" + item.ID);
+#endif
+        if (inspectionPanel == null)
+        {
+            inspectionPanel = Instantiate(Resources.Load("Messages/TradeInspectionPanel", typeof(GameObject)), FindObjectOfType<Canvas>().transform, false) as GameObject;
+        }
+
+        if (inspectionPanel != null)
+        {
+            inspectionPanel.SetActive(true);
+            inspectionPanel.GetComponent<ITradeInspection>().Inspect(item);
+        }
     }
 }
