@@ -102,9 +102,8 @@ public class QuizManager : MonoBehaviour {
     IEnumerator GetExtraFlippo(float sec)
     {
         yield return new WaitForSeconds(sec);
-        int newflippoIndex2 = Random.Range(1, GameManager.Instance.AmountOfFlippos + 1);
-        PlayerManager.Instance.Inventory.AddFlippo(newflippoIndex2);
-        Flippo f2 = GameManager.Instance.GetFlippoByID(newflippoIndex2);
+        Flippo f2 = GameManager.Instance.GetRandomFlippo();
+        PlayerManager.Instance.Inventory.AddFlippo(f2.id);
         GameObject flippo2 = Instantiate(Resources.Load("newFlippo"), canvas.transform, false) as GameObject;
         flippo2.GetComponent<Image>().sprite = f2.sprite;
         flippo2.GetComponent<NewFlippo>().StartAnimation(true);
@@ -114,9 +113,8 @@ public class QuizManager : MonoBehaviour {
     public void GetRandomFlippos()
     {
         int randomNr = Random.Range(0, 4);
-        int newflippoIndex1 = Random.Range(1, GameManager.Instance.AmountOfFlippos + 1);
-        PlayerManager.Instance.Inventory.AddFlippo(newflippoIndex1);
-        Flippo f1 = GameManager.Instance.GetFlippoByID(newflippoIndex1);
+        Flippo f1 = GameManager.Instance.GetRandomFlippo();
+        PlayerManager.Instance.Inventory.AddFlippo(f1.id);
         GameObject flippo1 = Instantiate(Resources.Load("newFlippo"), canvas.transform, false) as GameObject;
         flippo1.GetComponent<Image>().sprite = f1.sprite;
         if (randomNr == 3)

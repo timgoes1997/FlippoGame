@@ -97,6 +97,9 @@ public class GameManager : MonoBehaviour
 
     public Flippo GetRandomFlippoByRarity(Rarity rarity)
     {
+#if UNITY_EDITOR
+        Debug.Log("Received flippo with rarity:" + rarity.ToString());
+#endif
         List<Flippo> rarityFlippos = GetFlipposByRarity(rarity);
         return rarityFlippos[Random.Range(0, rarityFlippos.Count)];
     }
