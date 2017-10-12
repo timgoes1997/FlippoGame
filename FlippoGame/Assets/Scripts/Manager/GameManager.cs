@@ -29,6 +29,10 @@ public class GameManager : MonoBehaviour
 
     public List<Flippo> Flippos { get { return flippos; } }
 
+    public bool canSwipe = true;
+    public Flippo flippoCache;
+    public bool gotTradeMessage = false;
+
     void Awake()
     {
         DontDestroyOnLoad(this);

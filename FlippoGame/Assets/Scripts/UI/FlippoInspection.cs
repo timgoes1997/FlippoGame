@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class FlippoInspection : MonoBehaviour, IFlippoInspection
@@ -20,6 +21,7 @@ public class FlippoInspection : MonoBehaviour, IFlippoInspection
     public Text flippoRarity;
     public Text collectedFlippos;
     public bool destroy = true;
+    private Flippo flippo;
 
     // Use this for initialization
     void Start()
@@ -35,6 +37,7 @@ public class FlippoInspection : MonoBehaviour, IFlippoInspection
 
     public void Inspect(Flippo f)
     {
+        flippo = f;
         int amount = PlayerManager.Instance.Inventory.GetFlippoAmount(f);
 
         if (flippoSprite != null) flippoSprite.sprite = f.sprite;
@@ -43,6 +46,12 @@ public class FlippoInspection : MonoBehaviour, IFlippoInspection
         if (flippoCollection != null) flippoCollection.text = flippoCollectionDefaultText + f.collection.ToString();
         if (flippoRarity != null) flippoRarity.text = flippoRarityDefaultText + f.rarity.ToString();
         if (collectedFlippos != null) collectedFlippos.text = collectedFlipposDefaultText + amount.ToString();
+    }
+
+    public void Trade()
+    {
+        if (PlayerManager.Instance.Inventory.HasFlippo(flippo.id)) GameManager.Instance.flippoCache = flippo;
+        SceneManager.LoadScene("Trade");
     }
 
     public void Continue()

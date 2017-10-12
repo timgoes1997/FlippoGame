@@ -888,7 +888,7 @@ Prefab:
     - target: {fileID: 224394762216497262, guid: cf3c97d356dbe7b42b64d9438daf096c,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -0.000025034
+      value: -0.000025034002
       objectReference: {fileID: 0}
     - target: {fileID: 224394762216497262, guid: cf3c97d356dbe7b42b64d9438daf096c,
         type: 2}
@@ -1272,20 +1272,6 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -2458,6 +2444,7 @@ GameObject:
   - component: {fileID: 2133786674}
   - component: {fileID: 2133786673}
   - component: {fileID: 2133786672}
+  - component: {fileID: 2133786675}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2525,3 +2512,35 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &2133786675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2133786671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1188fb48b1c5557448bb099aaf0e542b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gestureFinger1: 0
+  gestureFinger2: 0
+  lastGesture: 0
+  currentGesture: 0
+  currentState: 0
+  swipeDistanceCurrentStateDivider: 200
+  swipeDistanceCurrentStateX: 0
+  swipeDistanceCurrentStateY: 0
+  minimalSwipeDistanceY: 50
+  minimalSwipeDistanceX: 50
+  twoFingerTouch: 1
+  startPosition: {x: 0, y: 0}
+  startPosition2: {x: 0, y: 0}
+  endPosition: {x: 0, y: 0}
+  endPosition2: {x: 0, y: 0}
+  sceneManager: {fileID: 867536177}
+  buttonUp: {fileID: 121730782}
+  buttonDown: {fileID: 64709357}
+  flippoAmount: {fileID: 1748853673}
+  minStartPositionDown: 1600
+  minStartPositionUp: 700

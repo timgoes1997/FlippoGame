@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class QuizManager : MonoBehaviour {
+public class QuizManager : MonoBehaviour
+{
 
     QuizQuestion[] quizQuestions;
     int randomIndex;
@@ -20,8 +21,16 @@ public class QuizManager : MonoBehaviour {
     public GameObject panelBad;
     public GameObject lockstreen;
 
+    private int previousLength = 0;
+    private bool initial = true;
+    public GameObject dubbelPanel;
+    public CollectionFlippo inspectFlippo;
+    public bool rightAnswer;
+
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
+        previousLength = PlayerManager.Instance.Inventory.flippos.Count;
         canvas = FindObjectOfType<Canvas>();
         MakeQuiz();
         GetQuestion();
@@ -29,11 +38,28 @@ public class QuizManager : MonoBehaviour {
 
     public void GetQuestion()
     {
-       
+        int newLength = PlayerManager.Instance.Inventory.flippos.Count;
+        if (previousLength == newLength && rightAnswer && !initial)
+        {
+            dubbelPanel.SetActive(true);
+            PlayerFlippo last = PlayerManager.Instance.Inventory.lastAddedFlippo;
+            if (last != null && !GameManager.Instance.gotTradeMessage) {
+                Flippo flippo = GameManager.Instance.GetFlippoByID(last.flippoID);
+                GameManager.Instance.flippoCache = flippo;
+                inspectFlippo.SetFlippoItem(flippo);
+            }
+        }
+        else
+        {
+            previousLength = newLength;
+            if (initial) initial = false;
+        }
+
+
         if (CheckIfAllCompleted())
         {
             // No questions left
-            for (int i = 0; i < 23; i++)
+            for (int i = 0; i < quizQuestions.Length; i++) //
             {
                 quizQuestions[i].completed = false;
             }
@@ -41,17 +67,17 @@ public class QuizManager : MonoBehaviour {
         }
         //else
         //{
-            do
-            {
-                randomIndex = Random.Range(0, 23);
-            } while (quizQuestions[randomIndex].completed);
+        do
+        {
+            randomIndex = Random.Range(0, quizQuestions.Length); //
+        } while (quizQuestions[randomIndex].completed);
 
-            //TODO: do somthing with the question
-            LoadQuestion(randomIndex);
+        //TODO: do somthing with the question
+        LoadQuestion(randomIndex);
         //}
 
         lockstreen.SetActive(false);
-    } 
+    }
 
     void LoadQuestion(int index)
     {
@@ -75,15 +101,18 @@ public class QuizManager : MonoBehaviour {
                 break;
         }
 
-       
+
         if (multiAnswer == quizQuestions[randomIndex].answer)
         {
             quizQuestions[randomIndex].completed = true;
             panelOk.SetActive(true);
+            rightAnswer = true;
         }
         else
         {
             panelBad.SetActive(true);
+            quizQuestions[randomIndex].completed = true;
+            rightAnswer = false;
         }
     }
 
@@ -125,17 +154,17 @@ public class QuizManager : MonoBehaviour {
         {
             flippo1.GetComponent<NewFlippo>().StartAnimation(true);
         }
-            
+
 
         if (randomNr == 3)
         {
             StartCoroutine(GetExtraFlippo(1.5f));
-        }  
+        }
     }
     void MakeQuiz()
     {
-        quizQuestions = new QuizQuestion[23];
-        for (int i = 0; i < 23; i++)
+        quizQuestions = new QuizQuestion[27]; //
+        for (int i = 0; i < quizQuestions.Length; i++) //
         {
             quizQuestions[i] = new QuizQuestion();
         }
@@ -227,7 +256,7 @@ public class QuizManager : MonoBehaviour {
         quizQuestions[14].answerAText = "Blondie";
         quizQuestions[14].answerBText = "Beugelbekkie";
         quizQuestions[14].answerCText = "Angsthaas";
-        quizQuestions[14].answer = Answer.B; 
+        quizQuestions[14].answer = Answer.B;
         quizQuestions[14].imageName = "imgBeugelBekkie";
         quizQuestions[15].questionText = "Hoe werd hij genoemd bij rocket power?";
         quizQuestions[15].answerAText = "Newbie";
@@ -254,7 +283,7 @@ public class QuizManager : MonoBehaviour {
         quizQuestions[18].answer = Answer.C;
         quizQuestions[18].imageName = "imgGeld";
         quizQuestions[19].questionText = "Welk nummer is niet van de Backstreet Boys?";
-        quizQuestions[19].answerAText = "Nothing ever happens"; 
+        quizQuestions[19].answerAText = "Nothing ever happens";
         quizQuestions[19].answerBText = "I want it that way";
         quizQuestions[19].answerCText = "Anywhere for you";
         quizQuestions[19].answer = Answer.A;
@@ -277,6 +306,38 @@ public class QuizManager : MonoBehaviour {
         quizQuestions[22].answerCText = "2003";
         quizQuestions[22].answer = Answer.A;
         quizQuestions[22].imageName = "imgWindowsXP";
+        quizQuestions[23].questionText = "Hoe heette de eerste Harry Potter film?";
+        quizQuestions[23].answerAText = "De geheime kamer";
+        quizQuestions[23].answerBText = "De vuurbeker";
+        quizQuestions[23].answerCText = "De steen der wijzen";
+        quizQuestions[23].answer = Answer.C;
+        quizQuestions[23].imageName = "imgHarry";
+        quizQuestions[24].questionText = "Wanneer kwam de titanic film uit?";
+        quizQuestions[24].answerAText = "1997";
+        quizQuestions[24].answerBText = "1998";
+        quizQuestions[24].answerCText = "2000";
+        quizQuestions[24].answer = Answer.A;
+        quizQuestions[24].imageName = "imgTitanic";
+        quizQuestions[25].questionText = "Wat is de oorspronkelijke naam van dit wezen in Lord of the Rings?";
+        quizQuestions[25].answerAText = "Gandalf";
+        quizQuestions[25].answerBText = "Gollum";
+        quizQuestions[25].answerCText = "Sméagol";
+        quizQuestions[25].answer = Answer.C;
+        quizQuestions[25].imageName = "imgSmeagol";
+        quizQuestions[26].questionText = "Hoeveel seizoenen van Friends zijn er?";
+        quizQuestions[26].answerAText = "12";
+        quizQuestions[26].answerBText = "11";
+        quizQuestions[26].answerCText = "10";
+        quizQuestions[26].answer = Answer.C;
+        quizQuestions[26].imageName = "imgFriends";
+        //
+        /*
+        quizQuestions[25].questionText = "";
+        quizQuestions[25].answerAText = "";
+        quizQuestions[25].answerBText = "";
+        quizQuestions[25].answerCText = "";
+        quizQuestions[25].answer = Answer.A;
+        quizQuestions[25].imageName = ""; //*/
     }
 }
 

@@ -5,7 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class Inventory {
     public int Id;
-    public List<PlayerFlippo> flippos;	
+    public List<PlayerFlippo> flippos;
+    public PlayerFlippo lastAddedFlippo;
 
     public bool HasFlippo(int id)
     {
@@ -25,6 +26,7 @@ public class Inventory {
         {
             if(f.flippoID == id)
             {
+                lastAddedFlippo = f;
                 f.amount++;
                 return true;
             }

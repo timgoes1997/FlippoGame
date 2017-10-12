@@ -33,12 +33,19 @@ public class TradeManager : MonoBehaviour
     void Start()
     {
         currentTrade = new TradeItem();
+        if(GameManager.Instance.flippoCache != null)
+        {
+            proposedFlippo = false;
+            SetTradeFlippo(GameManager.Instance.flippoCache.id);
+            GameManager.Instance.flippoCache = null;
+        }
         //StartCoroutine(GetTrades(1));
         //StartCoroutine(CreateAccount());
     }
 
     public void ActivateHistoryTradeMenu()
     {
+        GameManager.Instance.canSwipe = true;
         historyTradeMenu.SetActive(true);
         flippoCollectionMenu.SetActive(false);
         GetAcceptedTrades(handler);
@@ -46,6 +53,7 @@ public class TradeManager : MonoBehaviour
 
     public void LoadRequestFlippoCollection()
     {
+        GameManager.Instance.canSwipe = false;
         historyTradeMenu.SetActive(false);
         flippoCollectionMenu.GetComponent<IGrid>().SetGrid(true);
         flippoCollectionMenu.SetActive(true);
@@ -54,6 +62,7 @@ public class TradeManager : MonoBehaviour
 
     public void LoadProposedFlippoCollection()
     {
+        GameManager.Instance.canSwipe = false;
         historyTradeMenu.SetActive(false);
         flippoCollectionMenu.GetComponent<IGrid>().SetGrid(false);
         flippoCollectionMenu.SetActive(true);
